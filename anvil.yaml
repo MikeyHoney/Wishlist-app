@@ -4,7 +4,9 @@ name: M3 App 2
 startup_form: Form1
 renamed: true
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-dependencies: []
+dependencies:
+- app_id: C6ZZPAPN4YYF5NVJ
+  version: {dev: false}
 services:
 - source: /runtime/services/tables.yml
   client_config: {}
