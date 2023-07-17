@@ -48,23 +48,14 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: ListId
-      admin_ui: {order: 1, width: 200}
-      type: number
     - name: Description
       admin_ui: {order: 2, width: 200}
       type: string
     - name: URL
       admin_ui: {order: 3, width: 200}
       type: string
-    - name: Delete
-      admin_ui: {order: 4, width: 200}
-      type: bool
     - name: Name
       admin_ui: {order: 1.5, width: 200}
       type: string
-    - name: UserId
-      admin_ui: {order: 0, width: 200}
-      type: number
     title: Gift
 renamed: true

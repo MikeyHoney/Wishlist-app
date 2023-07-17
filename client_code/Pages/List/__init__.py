@@ -17,6 +17,6 @@ class List(ListTemplate):
     # Any code you write here will run before the form opens.
 
   def form_show(self, **event_args):
-    self.gift_grid.items = anvil.server.call('get_gift')
+    self.panel.items = anvil.server.call('get_gift')
     
 

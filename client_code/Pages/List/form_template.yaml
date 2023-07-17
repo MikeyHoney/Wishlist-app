@@ -1,8 +1,8 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
-  event_bindings: {show: form_show}
+  properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
+    role: null, html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
   properties: {col_widths: '{}'}
@@ -32,7 +32,7 @@ components:
     components:
     - type: RepeatingPanel
       properties: {spacing_above: none, spacing_below: none, item_template: Pages.List.RowTemplate2}
-      name: repeating_panel_1
+      name: panel
       layout_properties: {}
 - type: FlowPanel
   properties: {}
