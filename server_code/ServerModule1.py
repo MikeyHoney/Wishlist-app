@@ -23,6 +23,21 @@ def add_gift(task_info):
 
 @anvil.server.callable
 def get_gift():
-  return app_tables.gift.search(tables.order_by('GiftId', acending=False))
+  #return app_tables.gift.search(tables.order_by('GiftId', acending=False))
+  rows = app_tables.gift.search(tables.order_by('GiftId', ascending=False))
+
+    # Convert the rows to a list of dictionaries
+  data = []
+  for row in rows:
+      data.append({
+          'Name': row['Name'],
+          'Description': row['Description'],
+          'URL': row['URL'],
+
+          # Add more columns as needed
+      })
+
+  return data
+  
   pass
 

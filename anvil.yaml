@@ -48,9 +48,6 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: GiftId
-      admin_ui: {order: 0, width: 200}
-      type: number
     - name: ListId
       admin_ui: {order: 1, width: 200}
       type: number
@@ -66,5 +63,8 @@ db_schema:
     - name: Name
       admin_ui: {order: 1.5, width: 200}
       type: string
+    - name: UserId
+      admin_ui: {order: 0, width: 200}
+      type: number
     title: Gift
 renamed: true

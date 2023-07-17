@@ -18,5 +18,5 @@ class List(ListTemplate):
 
   def form_show(self, **event_args):
     self.gift_grid.items = anvil.server.call('get_gift')
-    pass
+    
 
