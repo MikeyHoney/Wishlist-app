@@ -1,7 +1,8 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
+  properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
+    role: null, html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
   properties: {col_widths: '{}'}
@@ -89,7 +90,7 @@ components:
       underline: false, icon: ''}
     name: add_gift_button
     layout_properties: {grid_position: 'WEQOLL,PZSDFM'}
-    event_bindings: {click: add_gift_button}
+    event_bindings: {click: add_gift_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -111,7 +112,7 @@ components:
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: HomeLink
       layout_properties: {column: null}
-      event_bindings: {}
+      event_bindings: {click: home_link_click}
   - type: DataRowPanel
     properties: {}
     name: data_row_panel_3
@@ -124,7 +125,7 @@ components:
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: ListLink
       layout_properties: {column: null}
-      event_bindings: {}
+      event_bindings: {click: list_link_click}
   - type: DataRowPanel
     properties: {}
     name: data_row_panel_2
@@ -137,4 +138,4 @@ components:
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: LoginLink
       layout_properties: {column: null}
-      event_bindings: {}
+      event_bindings: {click: login_link_click}

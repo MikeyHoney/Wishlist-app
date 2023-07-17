@@ -16,12 +16,12 @@ import anvil.server
 #   return 42
 
 @anvil.server.callable
-def AddGift(task_info):
+def add_gift(task_info):
   app_tables.gift.add_row(**task_info)
   pass
 
 @anvil.server.callable
-def GetGift():
+def get_gift():
   return app_tables.gift.search(tables.order_by('GiftId', acending=False))
   pass
 

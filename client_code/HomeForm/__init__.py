@@ -22,41 +22,16 @@ class HomeForm(HomeFormTemplate):
 
     # Any code you write here will run before the form opens.
 
-  def home_link(self, **event_args):
+  def home_link_click(self, **event_args):
     routing.set_url_hash('')
     pass
 
-  def list_link(self, **event_args):
+  def list_link_click(self, **event_args):
     routing.set_url_hash('List')
     pass
 
-  def login_link(self, **event_args):
+  def login_link_click(self, **event_args):
     routing.set_url_hash('Login')
     pass
 
-  def add_gift_button(self, **event_args):
-    """This method is called when the Add Gift button is clicked"""
-    
-    # Name
-    if not self.Name.text:
-      alert("You must enter a name!")
-      return
-    
-    # Description
-    if not self.Description.text:
-      alert("You must enter a description!")
-      return
-      
-    # URL
-    if not self.URL.text:
-      alert("You must enter a URL!")
-      return
-    
-    AddGift = {}
-    AddGift['Name'] = self.Name.text
-    AddGift['Description'] = self.Description.text
-    AddGift['URL'] = self.URL.text
-    anvil.server.call('add_AddGift', AddGift)
-    pass
-
-
+  
