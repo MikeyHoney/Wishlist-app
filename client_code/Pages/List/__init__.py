@@ -1,5 +1,6 @@
 from ._anvil_designer import ListTemplate
 from anvil import *
+import anvil.users
 import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -14,3 +15,8 @@ class List(ListTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def form_show(self, **event_args):
+    self.gift_grid.items = anvil.server.call('get_gift')
+    pass
+

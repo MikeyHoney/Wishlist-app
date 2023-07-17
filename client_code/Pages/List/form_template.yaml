@@ -2,11 +2,38 @@ is_package: true
 container:
   type: HtmlTemplate
   properties: {html: '@theme:standard-page.html'}
+  event_bindings: {show: form_show}
 components:
 - type: ColumnPanel
-  properties: {}
+  properties: {col_widths: '{}'}
   name: content_panel
   layout_properties: {slot: default}
+  components:
+  - type: DataGrid
+    properties:
+      role: null
+      columns:
+      - {id: QWXVLA, title: Name, data_key: Name, $$hashKey: 'object:41599'}
+      - {id: CHJQNM, title: Description, data_key: Description, $$hashKey: 'object:41600'}
+      - {id: LOHCRV, title: URL, data_key: URL, $$hashKey: 'object:41601'}
+      auto_header: true
+      tooltip: ''
+      border: ''
+      foreground: ''
+      rows_per_page: 20
+      visible: true
+      wrap_on: never
+      show_page_controls: true
+      spacing_above: small
+      spacing_below: small
+      background: ''
+    name: gift_grid
+    layout_properties: {grid_position: 'IRSFDB,XBDFIV'}
+    components:
+    - type: RepeatingPanel
+      properties: {spacing_above: none, spacing_below: none, item_template: Pages.List.RowTemplate2}
+      name: repeating_panel_1
+      layout_properties: {}
 - type: FlowPanel
   properties: {}
   name: navbar_links
