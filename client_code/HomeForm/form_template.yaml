@@ -25,8 +25,9 @@ components:
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
         background: '', bold: false, underline: false}
-      name: text_box_1
+      name: Name
       layout_properties: {}
+      event_bindings: {}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: content_panel_copy
@@ -51,8 +52,9 @@ components:
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
           font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
           background: '', bold: false, underline: false}
-        name: text_box_1_copy
+        name: Description
         layout_properties: {}
+        event_bindings: {}
   - type: ColumnPanel
     properties: {col_widths: '{}'}
     name: content_panel_copy_2
@@ -77,8 +79,17 @@ components:
           border: '', enabled: true, foreground: '', visible: true, text: type URL here,
           font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
           italic: false, background: '', bold: false, underline: false}
-        name: text_box_1_copy_2
+        name: URL
         layout_properties: {}
+        event_bindings: {}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Add Gift, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: AddGiftButton
+    layout_properties: {grid_position: 'WEQOLL,PZSDFM'}
+    event_bindings: {click: button_1_click}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -100,7 +111,7 @@ components:
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: HomeLink
       layout_properties: {column: null}
-      event_bindings: {click: HomeLink}
+      event_bindings: {}
   - type: DataRowPanel
     properties: {}
     name: data_row_panel_3
@@ -111,9 +122,9 @@ components:
         visible: true, text: List, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
         spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: ''}
-      name: link_2
+      name: ListLink
       layout_properties: {column: null}
-      event_bindings: {click: ListLink}
+      event_bindings: {}
   - type: DataRowPanel
     properties: {}
     name: data_row_panel_2
@@ -124,6 +135,6 @@ components:
         visible: true, text: Login, font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
         spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: ''}
-      name: link_1
+      name: LoginLink
       layout_properties: {column: null}
-      event_bindings: {click: LoginLink}
+      event_bindings: {}
