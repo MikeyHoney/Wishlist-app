@@ -1,3 +1,5 @@
+import anvil.google.auth, anvil.google.drive, anvil.google.mail
+from anvil.google.drive import app_files
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -18,6 +20,12 @@ import anvil.server
 
 @anvil.server.callable
 def add_gift(task_info):
+
+  user = anvil.users.get_user()
+
+  if not user: 
+    return
+  
   app_tables.gift.add_row(**task_info)
   pass
 

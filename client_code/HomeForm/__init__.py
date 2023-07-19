@@ -1,5 +1,7 @@
 from ._anvil_designer import HomeFormTemplate
 from anvil import *
+import anvil.google.auth, anvil.google.drive
+from anvil.google.drive import app_files
 import anvil.users
 import anvil.server
 import anvil.tables as tables
@@ -20,8 +22,14 @@ class HomeForm(HomeFormTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    self.update_links()
 
     # Any code you write here will run before the form opens.
+
+ # def update_links(self):
+  #  user = anvil.users.get_user()
+  #  self.add_task_link.visible = bool(user)
+    
 
   def home_link_click(self, **event_args):
     routing.set_url_hash('')
@@ -35,4 +43,7 @@ class HomeForm(HomeFormTemplate):
     routing.set_url_hash('Login')
     pass
 
-  
+  def form_show(self, **event_args):
+    if not anvil.users.get_user():
+      routing.set_url_hash('Login')
+      alert('You must be logged in to add to / create a list')
