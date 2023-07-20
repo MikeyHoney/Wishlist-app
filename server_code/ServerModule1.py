@@ -1,6 +1,6 @@
+import anvil.users
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
 from anvil.google.drive import app_files
-import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
@@ -31,6 +31,12 @@ def add_gift(task_info):
 
 @anvil.server.callable
 def get_gift():
+
+  user = anvil.users.get_user()
+
+  if not user:
+    return
+  
   return app_tables.gift.search(tables.order_by('GiftId', acending=False))
   #rows = app_tables.gift.search()
 
