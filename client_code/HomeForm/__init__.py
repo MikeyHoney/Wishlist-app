@@ -35,7 +35,7 @@ class HomeForm(HomeFormTemplate):
     self.HomeLink.visible = bool(user)
     self.ListLink.visible = bool(user)
     self.LoginLink.visible = bool(not user)
-    #self.logout_link_click.visible = bool(user)
+    #self.logout.visible = bool(user)
 
   def list_link(self, **event_args):
     routing.set_url_hash('List')
