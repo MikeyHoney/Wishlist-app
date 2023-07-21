@@ -19,12 +19,13 @@ class List(ListTemplate):
     # Any code you write here will run before the form opens.
 
   def form_show(self, **event_args):
-    self.panel.items = anvil.server.call('get_gift')
+    gift_data = anvil.server.call('get_gift')
+     # Populate the Data Grid with the gift data
+    self.data_grid.items = gift_data
+        # Populate the Data Grid with the gift data
 
   def add_gift_click(self, **event_args):
-    """This method is called when the Add Gift button is clicked"""
     
-    # Name
     if not self.Name.text:
       alert("You must enter a name!")
       return
