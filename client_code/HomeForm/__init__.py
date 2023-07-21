@@ -35,35 +35,28 @@ class HomeForm(HomeFormTemplate):
     self.HomeLink.visible = bool(user)
     self.ListLink.visible = bool(user)
     self.LoginLink.visible = bool(not user)
-    #self.logout.visible = bool(user)
+    self.LogoutLink.visible = bool(user)
 
   def list_link(self, **event_args):
     routing.set_url_hash('List')
 
   def login_link(self, **event_args):
     anvil.users.login_with_form(allow_cancel=True)
-    anvil.users.signup_with_form()
-
     self.update_links()
-    routing.set_url_hash('Login')
+    routing.set_url_hash('')
 
   #anvil.users.signup_with_form()
-
-    
-  def logout(self, **event_args):
-    anvil.users.logout()
-    self.update_links()
-    routing.set_url_hash('')
-    routing.clear_cache()
-
-  def login(self, **event_args):
-    anvil.users.login_with_form(allow_cancel=True)
-    self.update_links()
-    routing.set_url_hash('')
 
   def form_show(self, **event_args):
     if not anvil.users.get_user():
       routing.set_url_hash('Login')
       alert('You must be logged in to add to / create a list')
+
+  def logout_link(self, **event_args):
+    anvil.users.logout()
+    self.update_links()
+    routing.set_url_hash('')
+    routing.clear_cache()   
+
 
  

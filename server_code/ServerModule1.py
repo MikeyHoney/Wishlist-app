@@ -25,7 +25,9 @@ def add_gift(task_info):
 
   if not user: 
     return
-  
+
+ # app_tables.gift['User'] = user
+  #how to add whhat user is logged in to the gift tabel
   app_tables.gift.add_row(**task_info)
   pass
 
