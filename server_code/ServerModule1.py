@@ -39,8 +39,10 @@ def get_gift():
   if not user:
     return
   
-  return app_tables.gift.search(tables.order_by('GiftId', acending=False))
+  #return app_tables.gift.search(tables.order_by('Name', acending=False))
   #rows = app_tables.gift.search()
+  return app_tables.gift.search()
+
 
     # Convert the rows to a list of dictionaries
   #$data = []
@@ -57,3 +59,25 @@ def get_gift():
   
   pass
 
+@anvil.server.callable
+def add_list(task_info):
+
+  user = anvil.users.get_user()
+
+  if not user: 
+    return
+
+  app_tables.wishlist.add_row(**task_info)
+  pass
+  
+@anvil.server.callable
+def get_list():
+
+  user = anvil.users.get_user()
+
+  if not user:
+    return
+  
+  return app_tables.wishlist.search()
+
+  pass

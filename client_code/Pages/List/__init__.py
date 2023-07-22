@@ -15,14 +15,11 @@ class List(ListTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
     # Any code you write here will run before the form opens.
 
   def form_show(self, **event_args):
-    gift_data = anvil.server.call('get_gift')
-     # Populate the Data Grid with the gift data
-    self.data_grid.items = gift_data
-        # Populate the Data Grid with the gift data
+    self.repeating_panel.items = anvil.server.call('get_gift')
+
 
   def add_gift_click(self, **event_args):
     
@@ -46,3 +43,24 @@ class List(ListTemplate):
     AddGift['URL'] = self.URL.text
     anvil.server.call('add_gift', AddGift)
     pass
+
+  def add_list_click(self, **event_args):
+    if not self.List_Name.text:
+      alert("You must enter a name for your list!")
+      return    
+
+    AddList = {}
+    AddList['Name'] = self.List_Name.text
+    #got to find out how to add linking fields
+    anvil.server.call('add_list', AddList)
+      
+    pass
+
+  def form_show1(self, **event_args):
+    self.repeating_panel1.items = anvil.server.call('get_list')
+
+    pass
+
+
+
+  

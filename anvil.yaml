@@ -40,10 +40,15 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: ListId
-      admin_ui: {order: 0, width: 200}
-      type: number
-    - name: UserId
+    - name: User
+      admin_ui: {order: 2, width: 200}
+      type: link_single
+      target: user
+    - name: Gift
+      admin_ui: {order: 3, width: 200}
+      type: link_multiple
+      target: gift
+    - name: Name
       admin_ui: {order: 1, width: 200}
       type: string
     title: Wishlist
