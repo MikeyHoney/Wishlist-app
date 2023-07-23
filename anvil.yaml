@@ -40,18 +40,10 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: Email
-      admin_ui: {order: 2, width: 200}
-      type: link_single
-      target: user
-    - name: Gift
-      admin_ui: {order: 3, width: 200}
-      type: link_multiple
-      target: gift
     - name: Name
       admin_ui: {order: 1, width: 200}
       type: string
-    - name: Email
+    - name: User_Email
       admin_ui: {order: 1, width: 200}
       type: link_single
       target: users
@@ -73,6 +65,10 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: user
+    - name: List_Name
+      admin_ui: {order: 4, width: 200}
+      type: link_single
+      target: wishlist
     title: Gift
   users:
     client: none

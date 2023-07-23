@@ -39,6 +39,9 @@ class Gift(GiftTemplate):
     AddGift['Name'] = self.Name.text
     AddGift['Description'] = self.Description.text
     AddGift['URL'] = self.URL.text
-    AddGift['Email'] = anvil.users.get_user('email')
+    AddGift['User_Email'] = anvil.users.get_user('email')
+    #AddGift['List_Name'] = anvil.
+
+
     anvil.server.call('add_gift', AddGift)
     pass

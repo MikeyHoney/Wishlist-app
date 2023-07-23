@@ -26,7 +26,7 @@ class List(ListTemplate):
 
     AddList = {}
     AddList['Name'] = self.List_Name.text
-    AddList['Email'] = anvil.users.get_user('email')
+    AddList['User_Email'] = anvil.users.get_user('email')
     
     #got to find out how to add linking fields
     anvil.server.call('add_list', AddList)
