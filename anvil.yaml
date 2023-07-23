@@ -51,6 +51,10 @@ db_schema:
     - name: Name
       admin_ui: {order: 1, width: 200}
       type: string
+    - name: Email
+      admin_ui: {order: 1, width: 200}
+      type: link_single
+      target: users
     title: Wishlist
   gift:
     client: none
