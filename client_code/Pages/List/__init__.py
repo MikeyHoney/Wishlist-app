@@ -21,9 +21,13 @@ class List(ListTemplate):
     if not self.List_Name.text:
       alert("You must enter a name for your list!")
       return    
+      
+    user = anvil.users.get_user('')
 
     AddList = {}
     AddList['Name'] = self.List_Name.text
+    AddList['Email'] = anvil.users.get_user('email')
+    
     #got to find out how to add linking fields
     anvil.server.call('add_list', AddList)
       

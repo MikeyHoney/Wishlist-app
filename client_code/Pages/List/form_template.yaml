@@ -40,7 +40,7 @@ components:
     properties:
       role: null
       columns:
-      - {id: AOWGSB, title: List Name, data_key: Name, $$hashKey: 'object:44489'}
+      - {id: AOWGSB, title: Name, data_key: Name, $$hashKey: 'object:44489'}
       auto_header: true
       tooltip: ''
       border: ''

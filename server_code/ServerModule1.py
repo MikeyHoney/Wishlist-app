@@ -25,6 +25,9 @@ def add_gift(task_info):
 
   if not user: 
     return
+    
+  # Add the current user as the 'user' link to the gift
+  #task_info['user'] = user
 
  # app_tables.gift['User'] = user
   #how to add whhat user is logged in to the gift tabel
@@ -66,6 +69,7 @@ def add_list(task_info):
 
   if not user: 
     return
+    
 
   app_tables.wishlist.add_row(**task_info)
   pass

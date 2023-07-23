@@ -40,7 +40,7 @@ db_schema:
     client: none
     server: full
     columns:
-    - name: User
+    - name: Email
       admin_ui: {order: 2, width: 200}
       type: link_single
       target: user
@@ -65,8 +65,8 @@ db_schema:
     - name: Name
       admin_ui: {order: 1.5, width: 200}
       type: string
-    - name: User
-      admin_ui: {order: 3, width: 200}
+    - name: Email
+      admin_ui: {width: 200}
       type: link_single
       target: user
     title: Gift

@@ -115,7 +115,6 @@ components:
     - {id: JKTGCW, title: Name, data_key: Name, $$hashKey: 'object:8766'}
     - {id: PJVRGG, title: Description, data_key: Description, $$hashKey: 'object:8767'}
     - {id: GHJWRI, title: URL, data_key: URL, $$hashKey: 'object:8768'}
-    - {id: DTOFTV, title: User, data_key: User, $$hashKey: 'object:8769'}
     auto_header: true
     tooltip: ''
     border: ''
@@ -137,4 +136,8 @@ components:
     name: repeating_panel
     layout_properties: {}
     event_bindings: {show: form_show}
+    data_bindings:
+    - {property: items, code: 'self.item[''Name'']'}
+    - {property: items, code: 'self.item[''Description'']'}
+    - {property: items, code: 'self.item[''URL'']'}
   data_bindings: []
