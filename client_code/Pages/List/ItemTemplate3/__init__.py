@@ -14,3 +14,18 @@ class ItemTemplate3(ItemTemplate3Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+  def list_link_click(self, **event_args):
+        # Get the name of the list from the link's text
+      Name = self.list_link.text
+
+        # Call the 'open_gift_page' method
+      self.open_gift_page(Name)
+    
+  def open_gift_page(self, Name):
+    # Navigate to the Gift page with the list name as a URL parameter
+    open_form('Pages.Gift', Name = Name )
+  pass
+
+
+  
+

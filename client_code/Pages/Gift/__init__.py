@@ -12,8 +12,11 @@ class Gift(GiftTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+    
+    self.List_Name = None  # Initialize the current_list_name variable
 
-    # Any code you write here will run before the form opens.
+  def set_List_Name(self, List_Name):
+    self.List_Name = List_Name
   
   def form_show(self, **event_args):
     self.repeating_panel.items = anvil.server.call('get_gift')
@@ -40,7 +43,7 @@ class Gift(GiftTemplate):
     AddGift['Description'] = self.Description.text
     AddGift['URL'] = self.URL.text
     AddGift['User_Email'] = anvil.users.get_user('email')
-    #AddGift['List_Name'] = anvil.
+    AddGift['List_Name'] =  self.List_Name
 
 
     anvil.server.call('add_gift', AddGift)
