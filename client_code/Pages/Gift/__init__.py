@@ -37,7 +37,8 @@ class Gift(GiftTemplate):
     if not self.URL.text:
       alert("You must enter a URL!")
       return
-    
+    user = anvil.users.get_user('')
+
     AddGift = {}
     AddGift['Name'] = self.Name.text
     AddGift['Description'] = self.Description.text
