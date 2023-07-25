@@ -8,6 +8,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+
 class ItemTemplate3(ItemTemplate3Template):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -24,6 +25,9 @@ class ItemTemplate3(ItemTemplate3Template):
   def open_gift_page(self, Name):
     # Navigate to the Gift page with the list name as a URL parameter
     open_form('Pages.Gift', Name = Name )
+
+
+    
   pass
 
 
