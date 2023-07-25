@@ -1,24 +1,14 @@
-from ._anvil_designer import HomeFormTemplate
+from ._anvil_designer import NavBarTemplate
 from anvil import *
+import anvil.server
 import anvil.users
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
-import anvil.server
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-import anvil.tables as tables 
-import anvil.tables.query as q
-from anvil.tables import app_tables
 
-from anvil_extras import routing
-
-from ..Pages.Home import Home
-from ..Pages.List import List
-from ..Pages.Login import Login
-
-@routing.main_router
-class HomeForm(HomeFormTemplate):
+class NavBar(NavBarTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
@@ -49,7 +39,7 @@ class HomeForm(HomeFormTemplate):
     self.update_links()
     routing.set_url_hash('')
 
-  #anvil.users.signup_with_form()
+    #anvil.users.signup_with_form()
 
   def form_show(self, **event_args):
     if not anvil.users.get_user():
@@ -61,6 +51,3 @@ class HomeForm(HomeFormTemplate):
     self.update_links()
     routing.set_url_hash('')
     routing.clear_cache()   
-
-
- 

@@ -1,4 +1,5 @@
 from ._anvil_designer import GiftTemplate
+#from .NavBar import NavBar  # Import the NavBar custom component
 from anvil import *
 import anvil.server
 import anvil.users
@@ -12,10 +13,20 @@ from anvil import open_form
 
 
 
+
 class Gift(GiftTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
+
+     # Add the NavBar custom component to the form
+    #self.nav_bar = NavBar()
+    #self.add_component(self.nav_bar)
+        
+        # Update the NavBar visibility based on user login status
+    #user = anvil.users.get_user()
+    #self.nav_bar.update_links()
+    #self.nav_bar.visible = bool(user)
     
     self.List_Name = None  # Initialize the current_list_name variable
 
@@ -57,4 +68,3 @@ class Gift(GiftTemplate):
 
   def list_link(self, **event_args):
     open_form('Pages.List')
-

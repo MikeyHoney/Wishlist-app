@@ -1,9 +1,12 @@
 is_package: true
 container:
   type: HtmlTemplate
-  properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
-    role: null, html: '@theme:standard-page.html'}
+  properties: {html: '@theme:standard-page.html'}
 components:
+- type: ColumnPanel
+  properties: {}
+  name: content_panel
+  layout_properties: {slot: default}
 - type: FlowPanel
   properties: {}
   name: navbar_links
@@ -46,17 +49,4 @@ components:
     name: HomeLink
     layout_properties: {column: null}
     event_bindings: {click: home_link}
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: content_panel
-  layout_properties: {slot: default}
-  data_bindings: []
-  components: []
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: 'Wish-list application ', font_size: null, font: '', spacing_above: small,
-    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-    underline: false, icon: ''}
-  name: label_1
-  layout_properties: {slot: title}
 custom_component: true
