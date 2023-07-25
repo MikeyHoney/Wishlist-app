@@ -7,6 +7,8 @@ from anvil.google.drive import app_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil import open_form
+
 
 
 
@@ -52,3 +54,7 @@ class Gift(GiftTemplate):
 
     anvil.server.call('add_gift', AddGift)
     pass
+
+  def list_link(self, **event_args):
+    open_form('Pages.List')
+

@@ -35,6 +35,8 @@ class List(ListTemplate):
 
   def form_show(self, **event_args):
     self.repeating_panel.items = anvil.server.call('get_list')
+
+
     
 
 
