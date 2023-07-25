@@ -40,6 +40,9 @@ class HomeForm(HomeFormTemplate):
   def list_link(self, **event_args):
     routing.set_url_hash('List')
 
+  def gift_link(self, **event_args):
+    routing.set_url_hash('Gift')
+
   def login_link(self, **event_args):
     anvil.users.login_with_form(allow_cancel=True)
     self.update_links()
