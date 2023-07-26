@@ -7,6 +7,8 @@ from anvil.google.drive import app_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil_extras import routing
+
 
 
 class ItemTemplate3(ItemTemplate3Template):
@@ -24,7 +26,8 @@ class ItemTemplate3(ItemTemplate3Template):
     
   def open_gift_page(self, Name):
     # Navigate to the Gift page with the list name as a URL parameter
-    open_form('Pages.Gift', Name = Name, open_in_new_tab=True )
+    #open_form('Pages.Gift', Name = Name, open_in_new_tab=True )
+    routing.set_url_hash('Gift', Name = Name)
 
 
     

@@ -13,7 +13,8 @@ from anvil import open_form
 
 
 
-
+from anvil_extras import routing
+@routing.route('Gift')
 class Gift(GiftTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -66,5 +67,5 @@ class Gift(GiftTemplate):
     anvil.server.call('add_gift', AddGift)
     pass
 
-  def list_link(self, **event_args):
-    open_form('Pages.List')
+  #def list_link(self, **event_args):
+    #open_form('Pages.List')

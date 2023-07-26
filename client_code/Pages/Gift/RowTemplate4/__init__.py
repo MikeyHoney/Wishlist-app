@@ -14,3 +14,14 @@ class RowTemplate4(RowTemplate4Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def edit_row(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+  def delete_row(self, **event_args):
+    """This method is called when the button is clicked"""
+    pass
+
+
+

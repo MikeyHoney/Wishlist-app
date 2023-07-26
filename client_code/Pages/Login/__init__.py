@@ -10,7 +10,6 @@ from anvil.tables import app_tables
 
 from anvil_extras import routing
 @routing.route('Login')
-
 class Login(LoginTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.

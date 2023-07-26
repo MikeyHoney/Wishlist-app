@@ -10,7 +10,6 @@ from anvil.tables import app_tables
 
 from anvil_extras import routing
 @routing.route('List')
-
 class List(ListTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
