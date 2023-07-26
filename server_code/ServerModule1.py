@@ -89,7 +89,7 @@ def get_list():
 @anvil.server.callable
 def delete_gift(gift_name):
     # Get the gift row by its unique identifier
-    gift_row = app_tables.gift.get_by_id(gift_name)
+    gift_row = app_tables.gift.search(Name=gift_name).get()
 
     # Delete the gift row
     gift_row.delete()

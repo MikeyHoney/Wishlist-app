@@ -20,17 +20,14 @@ class Gift(GiftTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-     # Add the NavBar custom component to the form
-    #self.nav_bar = NavBar()
-    #self.add_component(self.nav_bar)
-        
-        # Update the NavBar visibility based on user login status
-    #user = anvil.users.get_user()
-    #self.nav_bar.update_links()
-    #self.nav_bar.visible = bool(user)
-    
+    self.repeating_panel.set_event_handler('x-delete', self.delete_row())
+     
     self.List_Name = None  # Initialize the current_list_name variable
-
+  
+  def delete_gift(self, gift, **event_args):
+    anvil.server.call('delete_gift', gift)
+    self.refresh_items()
+    
   def set_List_Name(self, List_Name):
     self.List_Name = List_Name
   
