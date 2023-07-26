@@ -85,3 +85,11 @@ def get_list():
   return app_tables.wishlist.search()
 
   pass
+
+@anvil.server.callable
+def delete_gift(gift_name):
+    # Get the gift row by its unique identifier
+    gift_row = app_tables.gift.get_by_id(gift_name)
+
+    # Delete the gift row
+    gift_row.delete()

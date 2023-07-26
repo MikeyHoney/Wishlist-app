@@ -20,8 +20,14 @@ class RowTemplate4(RowTemplate4Template):
     pass
 
   def delete_row(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    # Get the unique identifier of the gift row to be deleted (e.g., 'gift_id')
+    gift_name = self.item['Name']  # Assuming 'GiftId' is the column name for the unique identifier
+
+    # Call the server function to delete the gift row by its ID
+    anvil.server.call('delete_gift', gift_name)
+
+    # Remove the item from the repeating panel
+    self.remove_from_parent()
 
 
 
