@@ -48,6 +48,10 @@ db_schema:
       admin_ui: {order: 4, width: 200}
       type: link_single
       target: wishlist
+    - name: User_Email
+      admin_ui: {order: 4, width: 200}
+      type: link_single
+      target: users
     title: Gift
   users:
     client: none
