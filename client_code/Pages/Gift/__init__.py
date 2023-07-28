@@ -20,13 +20,20 @@ class Gift(GiftTemplate):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
 
-    self.repeating_panel.set_event_handler('x-delete', self.delete_row())
+    self.repeating_panel.set_event_handler('x-delete', self.delete_gift)
      
     self.List_Name = None  # Initialize the current_list_name variable
   
   def delete_gift(self, gift, **event_args):
-    anvil.server.call('delete_gift', gift)
-    self.refresh_items()
+     # Get the 'Name' value from the gift row
+    gift_name = gift['Name']
+
+    # Call the server function to delete the gift row by its name
+    anvil.server.call('delete_gift', gift_name)
+
+    # Refresh the repeating panel to update the UI
+    self.repeating_panel.items = anvil.server.call('get_gift')
+    #self.refresh_items()
     
   def set_List_Name(self, List_Name):
     self.List_Name = List_Name
