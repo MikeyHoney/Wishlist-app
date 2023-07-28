@@ -1,7 +1,6 @@
 container:
   type: DataRowPanel
-  data_bindings:
-  - {property: tag, code: 'self.item[''Name'']'}
+  data_bindings: []
 components:
 - type: Button
   properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,

@@ -87,6 +87,6 @@ def get_list():
   pass
 
 @anvil.server.callable
-def delete_gift(gift_name):
-  gift_name.delete()
+def delete_gift(gift):
+  gift.delete()
   #gift_row = app_tables.gift.get(Name=gift_name)

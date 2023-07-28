@@ -26,10 +26,10 @@ class Gift(GiftTemplate):
   
   def delete_gift(self, gift, **event_args):
      # Get the 'Name' value from the gift row
-    gift_name = gift['Name']
+    #gift_name = gift['Name']
 
     # Call the server function to delete the gift row by its name
-    anvil.server.call('delete_gift', gift_name)
+    anvil.server.call('delete_gift', gift)
 
     # Refresh the repeating panel to update the UI
     self.repeating_panel.items = anvil.server.call('get_gift')
