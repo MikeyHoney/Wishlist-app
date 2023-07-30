@@ -13,6 +13,7 @@ from anvil import open_form
 
 
 
+
 from anvil_extras import routing
 @routing.route('Gift')
 class Gift(GiftTemplate):
@@ -35,10 +36,14 @@ class Gift(GiftTemplate):
     self.repeating_panel.items = anvil.server.call('get_gift')
     #self.refresh_items()
     
-  def set_List_Name(self, List_Name):
-    self.List_Name = List_Name
   
   def form_show(self, **event_args):
+     # Retrieve the 'List_Name' from the URL parameters
+    #list_name = anvil.routing.get_url_parameter('List_Name')
+    #self.List_Name = routing.get_url_hash_parameters().get('list_name')
+
+        # Set the 'List_Name' variable in the Gift page
+    #self.set_List_Name(list_name)
     self.repeating_panel.items = anvil.server.call('get_gift')
 
 
@@ -58,17 +63,22 @@ class Gift(GiftTemplate):
       alert("You must enter a URL!")
       return
       
-    user = anvil.users.get_user('')
+    # Retrieve the selected list name from the server module
+    list_name = anvil.server.call('get_selected_list_name')
 
+    
     AddGift = {}
     AddGift['Name'] = self.Name.text
     AddGift['Description'] = self.Description.text
     AddGift['URL'] = self.URL.text
     AddGift['User_Email'] = anvil.users.get_user('email')
-    AddGift['List_Name'] =  self.List_Name
+    AddGift['List_Name'] =  list_name
 
 
     anvil.server.call('add_gift', AddGift)
+
+     # Clear the selected list name after it has been used
+    anvil.server.call('set_selected_list_name', None)
     pass
 
   #def list_link(self, **event_args):

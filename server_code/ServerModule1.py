@@ -17,6 +17,7 @@ import anvil.server
 # def say_hello(name):
 #   print("Hello, " + name + "!")
 #   return 42
+selected_list_name = None
 
 @anvil.server.callable
 def add_gift(task_info):
@@ -90,3 +91,15 @@ def get_list():
 def delete_gift(gift):
   gift.delete()
   #gift_row = app_tables.gift.get(Name=gift_name)
+
+# Function to set the selected list name
+@anvil.server.callable
+def set_selected_list_name(name):
+    selected_list_name
+    selected_list_name = name
+
+# Function to get the selected list name
+@anvil.server.callable
+def get_selected_list_name():
+    global selected_list_name
+    return selected_list_name

@@ -19,15 +19,16 @@ class ItemTemplate3(ItemTemplate3Template):
     # Any code you write here will run before the form opens.
   def list_link_click(self, **event_args):
         # Get the name of the list from the link's text
-      Name = self.list_link.text
+    name = self.list_link.text
 
         # Call the 'open_gift_page' method
-      self.open_gift_page(Name)
+    self.open_gift_page(name)
     
-  def open_gift_page(self, Name):
+  def open_gift_page(self, name):
     # Navigate to the Gift page with the list name as a URL parameter
     #open_form('Pages.Gift', Name = Name, open_in_new_tab=True )
-    routing.set_url_hash('Gift', Name = Name)
+    anvil.server.call('set_selected_list_name', name)
+    routing.set_url_hash('Gift', list_name=name)
 
 
     
