@@ -26,8 +26,7 @@ class Gift(GiftTemplate):
     self.List_Name = None  # Initialize the current_list_name variable
   
   def delete_gift(self, gift, **event_args):
-     # Get the 'Name' value from the gift row
-    #gift_name = gift['Name']
+  
 
     # Call the server function to delete the gift row by its name
     anvil.server.call('delete_gift', gift)
@@ -38,12 +37,7 @@ class Gift(GiftTemplate):
     
   
   def form_show(self, **event_args):
-     # Retrieve the 'List_Name' from the URL parameters
-    #list_name = anvil.routing.get_url_parameter('List_Name')
-    #self.List_Name = routing.get_url_hash_parameters().get('list_name')
-
-        # Set the 'List_Name' variable in the Gift page
-    #self.set_List_Name(list_name)
+    
     self.repeating_panel.items = anvil.server.call('get_gift')
 
 
@@ -80,6 +74,3 @@ class Gift(GiftTemplate):
      # Clear the selected list name after it has been used
     anvil.server.call('set_selected_list_name', None)
     pass
-
-  #def list_link(self, **event_args):
-    #open_form('Pages.List')

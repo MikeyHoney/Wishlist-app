@@ -61,7 +61,11 @@ def get_list():
     return
   
   #return app_tables.wishlist.search(User_Email=user.email)
-  return app_tables.wishlist.search()
+  #return app_tables.wishlist.search(
+  #      q.any_of(
+  #        {'User_Email': user.email}
+  #      )
+  #  )
 
 
   pass
@@ -69,9 +73,7 @@ def get_list():
 @anvil.server.callable
 def delete_gift(gift):
   gift.delete()
-  #gift_row = app_tables.gift.get(Name=gift_name)
 
-# Function to set the selected list name
 @anvil.server.callable
 def set_selected_list_name(name):
     global selected_list_name
