@@ -65,7 +65,7 @@ class Gift(GiftTemplate):
       
     # Retrieve the selected list name from the server module
     list_name = anvil.server.call('get_selected_list_name')
-
+    print(f"This is the name of the list: {list_name}")
     
     AddGift = {}
     AddGift['Name'] = self.Name.text

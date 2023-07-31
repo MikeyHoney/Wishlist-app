@@ -1,4 +1,5 @@
 import anvil.users
+from anvil import *
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
 from anvil.google.drive import app_files
 import anvil.tables as tables
@@ -6,17 +7,6 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-# This is a server module. It runs on the Anvil server,
-# rather than in the user's browser.
-#
-# To allow anvil.server.call() to call functions here, we mark
-# them with @anvil.server.callable.
-# Here is an example - you can replace it with your own:
-#
-# @anvil.server.callable
-# def say_hello(name):
-#   print("Hello, " + name + "!")
-#   return 42
 selected_list_name = None
 
 @anvil.server.callable
@@ -42,24 +32,8 @@ def get_gift():
 
   if not user:
     return
-  
-  #return app_tables.gift.search(tables.order_by('Name', acending=False))
-  #rows = app_tables.gift.search()
+
   return app_tables.gift.search()
-
-
-    # Convert the rows to a list of dictionaries
-  #$data = []
-  #for row in rows:
-  #    data.append({
-  #        'Name': row['Name'],
-  #        'Description': row['Description'],
-  #        'URL': row['URL'],
-
-          # Add more columns as needed
-  #    })
-
-  #return data
   
   pass
 
@@ -67,10 +41,13 @@ def get_gift():
 def add_list(task_info):
 
   user = anvil.users.get_user()
+  #print(f"user: {user.email}")
 
   if not user: 
     return
-    
+  # Set the user's email as part of the task_info dictionary
+  #task_info['User_Email'] = user.email
+
 
   app_tables.wishlist.add_row(**task_info)
   pass
@@ -83,7 +60,9 @@ def get_list():
   if not user:
     return
   
+  #return app_tables.wishlist.search(User_Email=user.email)
   return app_tables.wishlist.search()
+
 
   pass
 
@@ -95,8 +74,10 @@ def delete_gift(gift):
 # Function to set the selected list name
 @anvil.server.callable
 def set_selected_list_name(name):
-    selected_list_name
+    global selected_list_name
     selected_list_name = name
+    print(f"Selected list name: {selected_list_name}")
+    
 
 # Function to get the selected list name
 @anvil.server.callable

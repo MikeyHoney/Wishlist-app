@@ -20,6 +20,10 @@ class ItemTemplate3(ItemTemplate3Template):
   def list_link_click(self, **event_args):
         # Get the name of the list from the link's text
     name = self.list_link.text
+    anvil.server.call('set_selected_list_name', name)
+    print(f"This is the name of the list: {name}")
+    #alert(name) works
+
 
         # Call the 'open_gift_page' method
     self.open_gift_page(name)
@@ -27,7 +31,6 @@ class ItemTemplate3(ItemTemplate3Template):
   def open_gift_page(self, name):
     # Navigate to the Gift page with the list name as a URL parameter
     #open_form('Pages.Gift', Name = Name, open_in_new_tab=True )
-    anvil.server.call('set_selected_list_name', name)
     routing.set_url_hash('Gift', list_name=name)
 
 
