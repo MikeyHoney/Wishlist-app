@@ -60,7 +60,7 @@ def get_list():
   if not user:
     return
   
-  #return app_tables.wishlist.search(User_Email=user.email)
+  return app_tables.wishlist.search(User_Email=anvil.users.get_user(['email']))
   #return app_tables.wishlist.search(
   #      q.any_of(
   #        {'User_Email': user.email}
