@@ -73,16 +73,3 @@ def get_list():
 @anvil.server.callable
 def delete_gift(gift):
   gift.delete()
-
-@anvil.server.callable
-def set_selected_list_name(name):
-    global selected_list_name
-    selected_list_name = name
-    print(f"Selected list name: {selected_list_name}")
-    
-
-# Function to get the selected list name
-@anvil.server.callable
-def get_selected_list_name():
-    global selected_list_name
-    return selected_list_name

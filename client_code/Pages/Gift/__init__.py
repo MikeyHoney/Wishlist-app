@@ -11,7 +11,7 @@ from anvil.tables import app_tables
 
 
 from anvil_extras import routing
-@routing.route('Gift')
+@routing.route('Gift', url_keys=['Name'])
 class Gift(GiftTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -52,9 +52,14 @@ class Gift(GiftTemplate):
     if not self.URL.text:
       alert("You must enter a URL!")
       return
+
+    #url_params = routing.get_url_hash_parameters()
+    list_name =routing.get_url_hash('Name')
+    
+    #list_name = self.item.get('Name')
+
       
     # Retrieve the selected list name from the server module
-    list_name = anvil.server.call('get_selected_list_name')
     print(f"This is the name of the list: {list_name}")
     
     AddGift = {}
@@ -67,6 +72,5 @@ class Gift(GiftTemplate):
 
     anvil.server.call('add_gift', AddGift)
 
-     # Clear the selected list name after it has been used
-    anvil.server.call('set_selected_list_name', None)
+  
     pass
