@@ -38,6 +38,18 @@ def get_gift():
   pass
 
 @anvil.server.callable
+def get_list_name(name): 
+    # Query the 'Wishlist' table to find a row where the 'Name' column matches the provided name
+  result = app_tables.wishlist.search(q.name == name)
+
+    # Check if a matching row was found
+  if len(result) == 1:
+      return result[0]  # Return the matching row
+  else:
+      return None  # Return None if no matching row was found
+  
+
+@anvil.server.callable
 def add_list(task_info):
 
   user = anvil.users.get_user()

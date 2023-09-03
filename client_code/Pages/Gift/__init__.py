@@ -55,9 +55,7 @@ class Gift(GiftTemplate):
 
     #url_params = routing.get_url_hash_parameters()
     list_name =routing.get_url_hash('Name')
-    
-    #list_name = self.item.get('Name')
-
+    #name = get_list_name(self.Name)
       
     # Retrieve the selected list name from the server module
     print(f"This is the name of the list: {list_name}")
