@@ -54,7 +54,10 @@ class Gift(GiftTemplate):
       return
 
     #url_params = routing.get_url_hash_parameters()
-    list_name =routing.get_url_hash('Name')
+    #list_name =routing.get_url_hash('Name')
+
+    url_parameters = routing.get_url_hash_parameters()
+    list_name = url_parameters.get('Name')
     
     #list_name = self.item.get('Name')
 

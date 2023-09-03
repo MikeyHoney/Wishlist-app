@@ -1,6 +1,8 @@
 container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
+  data_bindings:
+  - {property: tag, code: 'self.item[''name'']'}
 components:
 - type: Link
   properties: {}
