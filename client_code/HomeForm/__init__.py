@@ -15,7 +15,6 @@ from anvil_extras import routing
 
 from ..Pages.Home import Home
 from ..Pages.List import List
-from ..Pages.Login import Login
 from ..Pages.Gift import Gift  # Import the Gift page
 
 

@@ -27,9 +27,7 @@ class Gift(GiftTemplate):
     # Call the server function to delete the gift row by its name
     anvil.server.call('delete_gift', gift)
 
-    # Refresh the repeating panel to update the UI
     self.repeating_panel.items = anvil.server.call('get_gift')
-    #self.refresh_items()
     
   
   def form_show(self, **event_args):
@@ -55,7 +53,7 @@ class Gift(GiftTemplate):
 
     #url_params = routing.get_url_hash_parameters()
     list_name =routing.get_url_hash('Name')
-    #name = get_list_name(self.Name)
+    #list_name = get_list_name(self.Name)
       
     # Retrieve the selected list name from the server module
     print(f"This is the name of the list: {list_name}")
@@ -69,6 +67,8 @@ class Gift(GiftTemplate):
 
 
     anvil.server.call('add_gift', AddGift)
+    self.form_show()
+
 
   
     pass

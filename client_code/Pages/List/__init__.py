@@ -29,7 +29,8 @@ class List(ListTemplate):
     
     #got to find out how to add linking fields
     anvil.server.call('add_list', AddList)
-      
+    self.form_show()
+
     pass
 
   def form_show(self, **event_args):
