@@ -15,7 +15,7 @@ from anvil_extras import routing
 
 from ..Pages.Home import Home
 from ..Pages.List import List
-from ..Pages.Gift import Gift  # Import the Gift page
+from ..Pages.Gift import Gift
 
 
 @routing.main_router
@@ -40,7 +40,7 @@ class HomeForm(HomeFormTemplate):
     
 
   def list_link(self, **event_args):
-    routing.set_url_hash('List')
+    routing.set_url_hash('WishList')
 
   def gift_link(self, **event_args):
     routing.set_url_hash('Gift')

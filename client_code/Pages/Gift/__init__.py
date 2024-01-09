@@ -8,9 +8,8 @@ from anvil.google.drive import app_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-
-
 from anvil_extras import routing
+
 @routing.route('Gift', url_keys=['Name'])
 class Gift(GiftTemplate):
   def __init__(self, **properties):
@@ -32,43 +31,48 @@ class Gift(GiftTemplate):
   
   def form_show(self, **event_args):
     
-    self.repeating_panel.items = anvil.server.call('get_gift')
+    #self.repeating_panel.items = anvil.server.call('get_gift')
+     gifts = anvil.server.call('get_gift', list_name=self.List_Name)
+     self.repeating_panel.items = gifts
 
 
   def add_gift_click(self, **event_args):
     
-    if not self.Name.text:
-      alert("You must enter a name!")
-      return
+        if not self.Name.text:
+            alert("You must enter a name!")
+            return
     
-    # Description
-    if not self.Description.text:
-      alert("You must enter a description!")
-      return
-      
-    # URL
-    if not self.URL.text:
-      alert("You must enter a URL!")
-      return
-
-    #url_params = routing.get_url_hash_parameters()
-    list_name =routing.get_url_hash('Name')
-    #list_name = get_list_name(self.Name)
-      
-    # Retrieve the selected list name from the server module
-    print(f"This is the name of the list: {list_name}")
+        # Description
+        if not self.Description.text:
+            alert("You must enter a description!")
+            return
     
-    AddGift = {}
-    AddGift['Name'] = self.Name.text
-    AddGift['Description'] = self.Description.text
-    AddGift['URL'] = self.URL.text
-    AddGift['User_Email'] = anvil.users.get_user('email')
-    AddGift['List_Name'] =  list_name
+        # URL
+        if not self.URL.text:
+            alert("You must enter a URL!")
+            return
 
+        # Get the URL parameters
+        url_parameters = routing.get_url_hash()
+        
+        # Get the list name from the URL parameters
+        list_name = url_parameters.get('Name')
+        
+        # Retrieve the selected list name from the server module
+        list_row = anvil.server.call('get_list_name', list_name)
+        
+        # Check if a matching row was found
+        if list_row is not None:
+            print(f"This is the name of the list: {list_name}")
+            
+            AddGift = {}
+            AddGift['Name'] = self.Name.text
+            AddGift['Description'] = self.Description.text
+            AddGift['URL'] = self.URL.text
+            AddGift['User_Email'] = anvil.users.get_user()['email']
+            AddGift['List_Name'] = list_name
 
-    anvil.server.call('add_gift', AddGift)
-    self.form_show()
-
-
-  
-    pass
+            anvil.server.call('add_gift', AddGift)
+            self.form_show()
+        else:
+            alert(f"No matching list found for name: {list_name}")
