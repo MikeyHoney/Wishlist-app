@@ -14,6 +14,10 @@ def add_gift(task_info):
 
   user = anvil.users.get_user()
 
+  url_parameters = routing.get_url_hash()
+  list_name = url_parameters.get('List_Name')
+
+
   if not user: 
     return
     
@@ -26,16 +30,17 @@ def add_gift(task_info):
   pass
 
 @anvil.server.callable
-def get_gift():
+def get_gift(list_name=None):
 
-  user = anvil.users.get_user()
+    user = anvil.users.get_user()
 
-  if not user:
-    return
+    if not user:
+        return
 
-  return app_tables.gift.search()
-  
-  pass
+    if list_name:
+        return app_tables.gift.search(List_Name=list_name)
+    else:
+        return app_tables.gift.search()
 
 @anvil.server.callable
 def get_list_name(name): 
@@ -51,36 +56,28 @@ def get_list_name(name):
 
 @anvil.server.callable
 def add_list(task_info):
+    user = anvil.users.get_user()
 
-  user = anvil.users.get_user()
-  #print(f"user: {user.email}")
+    if not user: 
+        return
 
-  if not user: 
-    return
-  # Set the user's email as part of the task_info dictionary
-  #task_info['User_Email'] = user.email
+    task_info['User_Email'] = user
 
-
-  app_tables.wishlist.add_row(**task_info)
-  pass
+    app_tables.wishlist.add_row(**task_info)
   
 @anvil.server.callable
 def get_list():
+    user = anvil.users.get_user()
 
-  user = anvil.users.get_user()
+    if not user:
+        return []
 
-  if not user:
-    return
-  
-  return app_tables.wishlist.search(User_Email=anvil.users.get_user(['email']))
-  #return app_tables.wishlist.search(
-  #      q.any_of(
-  #        {'User_Email': user.email}
-  #      )
-  #  )
+    # Get the row for the current user
+    user_row = app_tables.users.get(email=user['email'])
 
+    # Return the wishlists associated with the user
+    return app_tables.wishlist.search(User_Email=user_row)
 
-  pass
 
 @anvil.server.callable
 def delete_gift(gift):
