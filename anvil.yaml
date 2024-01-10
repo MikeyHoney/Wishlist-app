@@ -1,6 +1,9 @@
 dependencies:
 - app_id: C6ZZPAPN4YYF5NVJ
   version: {dev: false}
+- dep_id: dep_3hyvmqbq0n84
+  version: {dev: false}
+  resolution_hints: {app_id: ZKNOF5FRVLPVF4BI, name: HashRouting, package_name: HashRouting}
 services:
 - source: /runtime/services/tables.yml
   client_config: {}
