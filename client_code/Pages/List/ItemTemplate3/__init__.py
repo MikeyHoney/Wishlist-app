@@ -30,7 +30,7 @@ class ItemTemplate3(ItemTemplate3Template):
     # Navigate to the Gift page with the list name as a URL parameter
     #routing.set_url_hash(url_pattern='Gift', url_dict={'Name': self.item['Name']})
 
-    routing.set_url_hash(url_pattern='Gift', url_dict={'List_Name': name})
+    routing.set_url_hash(url_pattern='Gift', url_dict={'List_Name': self.item['Name']})
 
   
     #url_pattern='article', url_dict={'id':self.item['id']}

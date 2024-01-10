@@ -7,27 +7,24 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
+
+
 selected_list_name = None
 
 @anvil.server.callable
-def add_gift(task_info):
+def add_gift(name, description, url, user_email, list_name):
+    user = anvil.users.get_user()
 
-  user = anvil.users.get_user()
+    if not user: 
+        return
 
-  url_parameters = routing.get_url_hash()
-  list_name = url_parameters.get('List_Name')
-
-
-  if not user: 
-    return
-    
-  # Add the current user as the 'user' link to the gift
-  #task_info['user'] = user
-
- # app_tables.gift['User'] = user
-  #how to add whhat user is logged in to the gift tabel
-  app_tables.gift.add_row(**task_info)
-  pass
+    app_tables.gift.add_row(
+        Name=name,
+        Description=description,
+        URL=url,
+        User_Email=user_email,
+        List_Name=list_name
+    )
 
 @anvil.server.callable
 def get_gift(list_name=None):
@@ -38,20 +35,31 @@ def get_gift(list_name=None):
         return
 
     if list_name:
-        return app_tables.gift.search(List_Name=list_name)
+        if isinstance(list_name, str):
+            # If list_name is a string, look up the corresponding row in the 'Wishlist' table
+            list_row = app_tables.wishlist.get(Name=list_name)
+        elif isinstance(list_name, app_tables.wishlist):
+            # If list_name is already a row, use it directly
+            list_row = list_name
+        else:
+            # Handle other cases or raise an error if necessary
+            return []
+
+        # Now use the row in the search
+        return app_tables.gift.search(List_Name=list_row)
     else:
         return app_tables.gift.search()
 
 @anvil.server.callable
 def get_list_name(name): 
     # Query the 'Wishlist' table to find a row where the 'Name' column matches the provided name
-  result = app_tables.wishlist.search(q.name == name)
+    result = app_tables.wishlist.search(Name=name)
 
     # Check if a matching row was found
-  if len(result) == 1:
-      return result[0]  # Return the matching row
-  else:
-      return None  # Return None if no matching row was found
+    if len(result) == 1:
+        return result[0]  # Return the matching row
+    else:
+        return None  # Return None if no matching row was found
   
 
 @anvil.server.callable

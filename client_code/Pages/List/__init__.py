@@ -9,32 +9,28 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from anvil_extras import routing
-@routing.route('List')
+@routing.route('List', title="Wishlist | YourApp")
 class List(ListTemplate):
-  def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
-    self.init_components(**properties)
-    # Any code you write here will run before the form opens.
-  
-  def add_list_click(self, **event_args):
-    if not self.List_Name.text:
-      alert("You must enter a name for your list!")
-      return    
-      
-    user = anvil.users.get_user('')
+    def __init__(self, **properties):
+        self.init_components(**properties)
+        self.repeating_panel.items = anvil.server.call('get_list')
 
-    AddList = {}
-    AddList['Name'] = self.List_Name.text
-    AddList['User_Email'] = anvil.users.get_user('email')
+    def add_list_click(self, **event_args):
+        if not self.List_Name.text:
+            alert("You must enter a name for your list!")
+            return
     
-    #got to find out how to add linking fields
-    anvil.server.call('add_list', AddList)
-    self.form_show()
+        user = anvil.users.get_user('')
+    
+        AddList = {}
+        AddList['Name'] = self.List_Name.text
+        AddList['User_Email'] = anvil.users.get_user('email')
+    
+        anvil.server.call('add_list', AddList)
+        self.form_show()
 
-    pass
-
-  def form_show(self, **event_args):
-    self.repeating_panel.items = anvil.server.call('get_list')
+    def form_show(self, **event_args):
+        self.repeating_panel.items = anvil.server.call('get_list')
 
 
     
