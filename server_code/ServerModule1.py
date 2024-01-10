@@ -12,19 +12,24 @@ import anvil.server
 selected_list_name = None
 
 @anvil.server.callable
-def add_gift(name, description, url, user_email, list_name):
+def add_gift(task_info, list_name=None):
+    print(f"Received task_info: {task_info}")
+    print(f"Received list_name: {list_name}")
     user = anvil.users.get_user()
 
-    if not user: 
-        return
+    try:
+        # Add the current user as the 'user' link to the gift
+        task_info['Name'] = user
 
-    app_tables.gift.add_row(
-        Name=name,
-        Description=description,
-        URL=url,
-        User_Email=user_email,
-        List_Name=list_name
-    )
+        # Add the list name to the task_info
+        task_info['List_Name'] = list_name
+
+        # Add the gift row
+        app_tables.gift.add_row(**task_info)
+        
+        print("Gift added successfully.")
+    except Exception as e:
+        print(f"Error adding gift: {e}")
 
 @anvil.server.callable
 def get_gift(list_name=None):
