@@ -77,7 +77,7 @@ class Gift(GiftTemplate):
             AddGift['User_Email'] = anvil.users.get_user()['email']
 
 # Pass the list_name to the server
-            anvil.server.call('add_gift', AddGift, list_name=list_name,)
+            anvil.server.call('add_gift', AddGift, list_name=list_name)
             self.form_show()
         else:
             alert(f"No matching list found for name: {list_name}")
