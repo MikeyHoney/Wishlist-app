@@ -13,21 +13,21 @@ from anvil_extras import routing
 
 class ItemTemplate3(ItemTemplate3Template):
   def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
+
     self.init_components(**properties)
 
-    # Any code you write here will run before the form opens.
+
   def list_link_click(self, **event_args):
-        # Get the name of the list from the link's text
+
     name = self.list_link.text
     print(f"This is the name of the list: {name}")
 
 
-        # Call the 'open_gift_page' method
+
     self.open_gift_page(name)
     
   def open_gift_page(self, name):
-    # Navigate to the Gift page with the list name as a URL parameter
+
     #routing.set_url_hash(url_pattern='Gift', url_dict={'Name': self.item['Name']})
 
     routing.set_url_hash(url_pattern='Gift', url_dict={'List_Name': self.item['Name']})

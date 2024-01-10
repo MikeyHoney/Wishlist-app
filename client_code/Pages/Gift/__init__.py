@@ -17,7 +17,7 @@ class Gift(GiftTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         self.repeating_panel.set_event_handler('x-delete', self.delete_gift)
-        self.List_Name = None  # Initialize the current_list_name variable
+        self.List_Name = None
 
     def delete_gift(self, gift, **event_args):
         anvil.server.call('delete_gift', gift)
@@ -27,7 +27,6 @@ class Gift(GiftTemplate):
 
         url_parameters = routing.get_url_hash()
         print(f"URL Parameters: {url_parameters}")
-        # Retrieve the list name from the URL parameters
         list_name = url_parameters
 
       
@@ -36,11 +35,9 @@ class Gift(GiftTemplate):
             gifts = anvil.server.call('get_gift', list_name=list_name)
 
             if gifts:
-                # Proceed with displaying the gifts
                 self.repeating_panel.items = gifts
             else:
-                # Handle the case where no gifts are found
-                self.repeating_panel.items = []  # Clear the repeating panel
+                self.repeating_panel.items = [] 
                 self.add_gift_button.visible = True
                 self.no_gifts_label.text = "No gifts have been added to the list."
         else:
@@ -63,10 +60,8 @@ class Gift(GiftTemplate):
         url_hash = routing.get_url_hash()
         print(f"URL Hash in add_gift_click: {url_hash}")
 
-         # Get the list name from the URL parameters
         list_name = routing.get_url_dict().get('List_Name', None)
 
-    # Retrieve the selected list name from the server module
         list_row = anvil.server.call('get_list_name', list_name)
 
         if list_row is not None:
@@ -76,7 +71,6 @@ class Gift(GiftTemplate):
             AddGift['URL'] = self.URL.text
             AddGift['User_Email'] = anvil.users.get_user()['email']
 
-# Pass the list_name to the server
             anvil.server.call('add_gift', AddGift, list_name=list_name)
             self.form_show()
         else:
