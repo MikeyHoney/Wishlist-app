@@ -60,7 +60,7 @@ class Gift(GiftTemplate):
         url_hash = routing.get_url_hash()
         print(f"URL Hash in add_gift_click: {url_hash}")
 
-        list_name = routing.get_url_dict().get('List_Name', None)
+        list_name = routing.get_url_dict().get('List_Id', None)
 
         # server call
         list_row = anvil.server.call('get_list_id', list_id)
