@@ -9,11 +9,12 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 from anvil_extras import routing
-@routing.route('List', title="Wishlist | YourApp")
+@routing.route('List', title="Wishlist")
 class List(ListTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
-        self.repeating_panel.items = anvil.server.call('get_list')
+        # You need to provide the list_id parameter when calling get_list
+        self.repeating_panel.items = anvil.server.call('get_list', list_id=list_id)
 
     def add_list_click(self, **event_args):
         if not self.List_Name.text:
@@ -30,7 +31,8 @@ class List(ListTemplate):
         self.form_show()
 
     def form_show(self, **event_args):
-        self.repeating_panel.items = anvil.server.call('get_list')
+        # You need to provide the list_id parameter when calling get_list
+        self.repeating_panel.items = anvil.server.call('get_list', list_id=my_list_id)
 
 
     

@@ -12,32 +12,31 @@ from anvil_extras import routing
 
 
 class ItemTemplate3(ItemTemplate3Template):
-  def __init__(self, **properties):
+    def __init__(self, **properties):
+        self.init_components(**properties)
 
-    self.init_components(**properties)
+    def list_link_click(self, **event_args):
+        name = self.list_link.text
+        print(f"This is the name of the list: {name}")
+        self.open_gift_page(name)
 
+    def open_gift_page(self, name):
+        # Assuming there's a server call to get the list based on its name
+        list_row = anvil.server.call('get_list_name', name)
 
-  def list_link_click(self, **event_args):
+        if list_row is not None:
+            # Use the ID of the retrieved list row
+            list_id = list_row['ID']
 
-    name = self.list_link.text
-    print(f"This is the name of the list: {name}")
+            # Now, you can use the get_list_by_id function to get the list by ID
+            list_data = anvil.server.call('get_list', list_id)
 
-
-
-    self.open_gift_page(name)
-    
-  def open_gift_page(self, name):
-
-    #routing.set_url_hash(url_pattern='Gift', url_dict={'Name': self.item['Name']})
-
-    routing.set_url_hash(url_pattern='Gift', url_dict={'List_Name': self.item['Name']})
-
-  
-    #url_pattern='article', url_dict={'id':self.item['id']}
-
-
-    
-  pass
+            if list_data is not None:
+                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_id})
+            else:
+                alert(f"No matching list found for ID: {list_id}")
+        else:
+            alert(f"No matching list found for name: {name}")
 
 
   

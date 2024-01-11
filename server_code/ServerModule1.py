@@ -13,9 +13,9 @@ import uuid
 selected_list_id = None
 
 @anvil.server.callable
-def add_gift(task_info, list_id=list_id):
+def add_gift(task_info):
     print(f"Received task_info: {task_info}")
-    print(f"Received list_name: {list_id}")
+    #print(f"Received list_id: {list_id}")
     user = anvil.users.get_user()
 
     try:
@@ -68,20 +68,13 @@ def add_list(task_info):
         return
 
     task_info['User_Email'] = user
-    task_info['ID'] = str(uuid.uuid4())
+    task_info['ID'] = uuid.uuid4().int
 
     app_tables.wishlist.add_row(**task_info)
   
 @anvil.server.callable
-def get_list():
-    user = anvil.users.get_user()
-
-    if not user:
-        return []
-
-    user_row = app_tables.users.get(email=user['email'])
-
-    return app_tables.wishlist.search(User_Email=user_row)
+def get_list(list_id):
+    return app_tables.wishlist.get(ID=list_id)
 
 
 @anvil.server.callable

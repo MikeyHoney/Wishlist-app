@@ -50,7 +50,7 @@ db_schema:
     - name: Name
       admin_ui: {order: 1.5, width: 200}
       type: string
-    - name: List_Name
+    - name: List_Id
       admin_ui: {order: 5, width: 200}
       type: link_single
       target: wishlist
