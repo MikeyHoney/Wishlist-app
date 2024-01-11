@@ -6,21 +6,22 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
+import uuid
 
 
 
-selected_list_name = None
+selected_list_id = None
 
 @anvil.server.callable
-def add_gift(task_info, list_name=None):
+def add_gift(task_info, list_id=list_id):
     print(f"Received task_info: {task_info}")
-    print(f"Received list_name: {list_name}")
+    print(f"Received list_name: {list_id}")
     user = anvil.users.get_user()
 
     try:
         task_info['Name'] = user
 
-        task_info['List_Name'] = list_name
+        task_info['List_Id'] = list_id
 
         app_tables.gift.add_row(**task_info)
         
@@ -29,22 +30,22 @@ def add_gift(task_info, list_name=None):
         print(f"Error adding gift: {e}")
 
 @anvil.server.callable
-def get_gift(list_name=None):
+def get_gift(list_id=None):
 
     user = anvil.users.get_user()
 
     if not user:
         return
 
-    if list_name:
-        if isinstance(list_name, str):
-            list_row = app_tables.wishlist.get(Name=list_name)
-        elif isinstance(list_name, app_tables.wishlist):
-            list_row = list_name
+    if list_id:
+        if isinstance(list_id, str):
+            list_row = app_tables.wishlist.get(ID=list_id)
+        elif isinstance(list_id, app_tables.wishlist):
+            list_row = list_id
         else:
             return []
 
-        return app_tables.gift.search(List_Name=list_row)
+        return app_tables.gift.search(List_Id=list_row)
     else:
         return app_tables.gift.search()
 
@@ -67,6 +68,7 @@ def add_list(task_info):
         return
 
     task_info['User_Email'] = user
+    task_info['ID'] = str(uuid.uuid4())
 
     app_tables.wishlist.add_row(**task_info)
   

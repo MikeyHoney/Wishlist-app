@@ -33,6 +33,9 @@ db_schema:
       admin_ui: {order: 1, width: 200}
       type: link_single
       target: users
+    - name: ID
+      admin_ui: {width: 200, order: -0.5}
+      type: number
     title: Wishlist
   gift:
     client: none
@@ -48,7 +51,7 @@ db_schema:
       admin_ui: {order: 1.5, width: 200}
       type: string
     - name: List_Name
-      admin_ui: {order: 4, width: 200}
+      admin_ui: {order: 5, width: 200}
       type: link_single
       target: wishlist
     - name: User_Email

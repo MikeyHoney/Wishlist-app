@@ -12,12 +12,12 @@ from anvil.tables import app_tables
 
 from anvil_extras import routing
 
-@routing.route('Gift', url_keys=['List_Name'], title="Gift")
+@routing.route('Gift', url_keys=['List_Id'], title="Gift")
 class Gift(GiftTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         self.repeating_panel.set_event_handler('x-delete', self.delete_gift)
-        self.List_Name = None
+        self.List_Id = list_id
 
     def delete_gift(self, gift, **event_args):
         anvil.server.call('delete_gift', gift)
@@ -27,12 +27,12 @@ class Gift(GiftTemplate):
 
         url_parameters = routing.get_url_hash()
         print(f"URL Parameters: {url_parameters}")
-        list_name = url_parameters
+        list_id = url_parameters
 
       
-        if list_name is not None:
-            self.List_Name = list_name
-            gifts = anvil.server.call('get_gift', list_name=list_name)
+        if list_id is not None:
+            self.List_Id = list_id
+            gifts = anvil.server.call('get_gift', list_id=list_id)
 
             if gifts:
                 self.repeating_panel.items = gifts
@@ -62,7 +62,8 @@ class Gift(GiftTemplate):
 
         list_name = routing.get_url_dict().get('List_Name', None)
 
-        list_row = anvil.server.call('get_list_name', list_name)
+        # server call
+        list_row = anvil.server.call('get_list_id', list_id)
 
         if list_row is not None:
             AddGift = {}
@@ -71,7 +72,8 @@ class Gift(GiftTemplate):
             AddGift['URL'] = self.URL.text
             AddGift['User_Email'] = anvil.users.get_user()['email']
 
-            anvil.server.call('add_gift', AddGift, list_name=list_name)
+            #server call
+            anvil.server.call('add_gift', AddGift, list_id=list_id)
             self.form_show()
         else:
-            alert(f"No matching list found for name: {list_name}")
+            alert(f"No matching list found for name: {list_id}")
