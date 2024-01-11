@@ -16,6 +16,8 @@ class ItemTemplate3(ItemTemplate3Template):
         self.init_components(**properties)
 
     def list_link_click(self, **event_args):
+
+      #servercall to get 
         name = self.list_link.text
         print(f"This is the name of the list: {name}")
         self.open_gift_page(name)
