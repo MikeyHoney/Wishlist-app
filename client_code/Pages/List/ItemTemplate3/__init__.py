@@ -22,7 +22,8 @@ class ItemTemplate3(ItemTemplate3Template):
         #list_name = event_args['sender'].text
 
         print("list_link_click method triggered")
-        list_name = self.item['Name']
+        #list_name = self.item['Name']
+        list_name = self.list_link.text
         print(f"This is the name of the list: {list_name}")
         self.open_gift_page(list_name)
 
