@@ -70,13 +70,52 @@ def add_list(task_info):
     task_info['User_Email'] = user
     task_info['ID'] = uuid.uuid4().int
 
-    app_tables.wishlist.add_row(**task_info)
+    new_list = app_tables.wishlist.add_row(**task_info)
+
+    return new_list
   
 @anvil.server.callable
-def get_list(list_id):
-    return app_tables.wishlist.get(User_Email==)
+def get_list():
 
+  user = anvil.users.get_user()
+
+  if not user:
+    return
+  
+  return app_tables.wishlist.search(User_Email=anvil.users.get_user(['email']))
 
 @anvil.server.callable
 def delete_gift(gift):
   gift.delete()
+
+@anvil.server.callable
+def get_list_with_gifts(list_id):
+    #printing
+    print("All Wishlist rows:", app_tables.wishlist.search())
+  [rint("This is the id: "app_tables.wishlist.get(ID=list_id)
+
+    user = anvil.users.get_user()
+
+    if not user:
+        return None
+
+    # Convert the list_id to the appropriate data type (e.g., integer)
+    #try:
+    #    list_id = int(list_id)
+    #except ValueError:
+    #    return None
+
+    # Retrieve the list row
+    list_row = app_tables.wishlist.get(ID=list_id)
+
+    if not list_row:
+        return None
+
+    # Retrieve the associated gifts
+    gifts = app_tables.gift.search(List_Id=list_row)
+
+
+    return {
+        'list_info': list_row,
+        'gifts': gifts,
+    }

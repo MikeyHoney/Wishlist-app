@@ -64,7 +64,7 @@ class Gift(GiftTemplate):
         list_name = routing.get_url_dict().get('List_Id', None)
 
         # server call
-        list_row = anvil.server.call('get_list', list_id)
+        list_row = anvil.server.call('get_list_with_gifts', list_id)
 
         if list_row is not None:
             AddGift = {}

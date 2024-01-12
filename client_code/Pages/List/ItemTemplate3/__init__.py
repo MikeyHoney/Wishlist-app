@@ -25,27 +25,27 @@ class ItemTemplate3(ItemTemplate3Template):
         #list_name = self.item['Name']
         list_name = self.list_link.text
         print(f"This is the name of the list: {list_name}")
-        self.open_gift_page(list_name)
+        list_id = self.item['ID']  # Assuming 'ID' is the column name for list_id
+        print(f"This is the ID of the list: {list_id}")
+        self.open_gift_page(list_id)
 
-    def open_gift_page(self, name):
-        print(f"open_gift_page method called with name: {name}")
 
-        # Assuming there's a server call to get the list based on its name
-        list_row = anvil.server.call('get_list_name', name)
+    def open_gift_page(self, list_id):
+        print(f"open_gift_page method called with list_id: {list_id}")
 
-        if list_row is not None:
-            # Use the ID of the retrieved list row
-            list_id = list_row['ID']
+        # Make a single server call to get both list information and associated gifts
+        result = anvil.server.call('get_list_with_gifts', list_id)
 
-            # Now, you can use the get_list_by_id function to get the list by ID
-            list_data = anvil.server.call('get_list', list_id)
+        if result:
+            list_info = result['list_info']
+            gifts = result['gifts']
 
-            if list_data is not None:
-                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_id})
+            if list_info and gifts:
+                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_info['ID']})
             else:
                 alert(f"No matching list found for ID: {list_id}")
         else:
-            alert(f"No matching list found for name: {name}")
+            alert(f"No matching list found for ID: {list_id}")
 
 
   
