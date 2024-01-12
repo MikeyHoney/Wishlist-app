@@ -100,7 +100,7 @@ def get_list_with_gifts(list_id):
     if not user:
         return None
 
-
+  
     list_row = app_tables.wishlist.get(List_Id=list_id)
   
     if list_row:

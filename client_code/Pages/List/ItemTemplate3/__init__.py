@@ -34,6 +34,9 @@ class ItemTemplate3(ItemTemplate3Template):
 
         result = anvil.server.call('get_list_with_gifts', list_id)
 
+        print(f"this is the result: {result}")
+
+
         if result:
             list_info = result['list_info']
             gifts = result['gifts']
