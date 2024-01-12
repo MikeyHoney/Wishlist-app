@@ -35,7 +35,7 @@ db_schema:
       target: users
     - name: List_Id
       admin_ui: {order: -0.5, width: 200}
-      type: number
+      type: string
     title: Wishlist
   gift:
     client: none

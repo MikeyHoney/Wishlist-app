@@ -67,7 +67,7 @@ def add_list(task_info):
         return
 
     task_info['User_Email'] = user
-    task_info['List_Id'] = uuid.uuid4().int
+    task_info['List_Id'] = str(uuid.uuid4())
 
     new_list = app_tables.wishlist.add_row(**task_info)
 
