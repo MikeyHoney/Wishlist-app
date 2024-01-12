@@ -74,7 +74,7 @@ def add_list(task_info):
   
 @anvil.server.callable
 def get_list(list_id):
-    return app_tables.wishlist.get(ID=list_id)
+    return app_tables.wishlist.get(User_Email==)
 
 
 @anvil.server.callable

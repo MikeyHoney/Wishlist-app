@@ -27,7 +27,8 @@ class Gift(GiftTemplate):
 
         url_parameters = routing.get_url_hash()
         print(f"URL Parameters: {url_parameters}")
-        list_id = url_parameters
+        #list_id = url_parameters
+        list_id = url_parameters.get('List_Id')
 
       
         if list_id is not None:
