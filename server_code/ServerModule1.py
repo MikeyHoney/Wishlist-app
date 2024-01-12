@@ -39,7 +39,7 @@ def get_gift(list_id=None):
 
     if list_id:
         if isinstance(list_id, str):
-            list_row = app_tables.wishlist.get(ID=list_id)
+            list_row = app_tables.wishlist.get(List_Id=list_id)
         elif isinstance(list_id, app_tables.wishlist):
             list_row = list_id
         else:
