@@ -15,19 +15,19 @@ selected_list_id = None
 @anvil.server.callable
 def add_gift(task_info):
     print(f"Received task_info: {task_info}")
-    #print(f"Received list_id: {list_id}")
+    print(f"Received list_id: {list_id}")
     user = anvil.users.get_user()
 
     try:
         task_info['Name'] = user
-
         task_info['List_Id'] = list_id
 
-        app_tables.gift.add_row(**task_info)
+        new_gift = app_tables.gift.add_row(**task_info)
         
         print("Gift added successfully.")
     except Exception as e:
         print(f"Error adding gift: {e}")
+    return new_gift 
 
 @anvil.server.callable
 def get_gift(list_id=None):
@@ -91,9 +91,9 @@ def delete_gift(gift):
 def get_list_with_gifts(list_id):
     #printing
     wishlist_rows = list(app_tables.wishlist.search())
-    print("All Wishlist rows:", wishlist_rows)
-    print("list id: ", list_id)
-    print("This is the searched id: ", app_tables.wishlist.get(List_Id=list_id))
+    #print("All Wishlist rows:", wishlist_rows)
+    #print("list id: ", list_id)
+    #print("This is the searched id: ", app_tables.wishlist.get(List_Id=list_id))
 
     user = anvil.users.get_user()
 
@@ -104,8 +104,8 @@ def get_list_with_gifts(list_id):
   
     list_row = app_tables.wishlist.get(List_Id=list_id)
   
-    if list_row:
-      print("List Row Contents:", list_row)
+    #if list_row:
+      #print("List Row Contents:", list_row)
 
     if not list_row:
         return None

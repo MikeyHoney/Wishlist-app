@@ -17,24 +17,22 @@ class ItemTemplate3(ItemTemplate3Template):
 
     def list_link_click(self, **event_args):
 
-        #list_name = self.list_link.text
-        #list_name = event_args['sender'].text
+     
 
-        print("list_link_click method triggered")
-        #list_name = self.item['Name']
+        #print("list_link_click method triggered")
         list_name = self.list_link.text
-        print(f"This is the name of the list: {list_name}")
+       # print(f"This is the name of the list: {list_name}")
         list_id = self.item['List_Id'] 
-        print(f"This is the ID of the list: {list_id}")
+       # print(f"This is the ID of the list: {list_id}")
         self.open_gift_page(list_id)
 
 
     def open_gift_page(self, list_id):
-        print(f"open_gift_page method called with list_id: {list_id}")
+       # print(f"open_gift_page method called with list_id: {list_id}")
 
         result = anvil.server.call('get_list_with_gifts', list_id)
 
-        print(f"this is the result: {result}")
+        #print(f"this is the result: {result}")
 
 
         if result:
