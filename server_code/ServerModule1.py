@@ -53,9 +53,8 @@ def get_gift(list_id=None):
 def get_list_name(name): 
     result = app_tables.wishlist.search(Name=name)
 
-    # Check if a matching row was found
     if len(result) == 1:
-        return result[0]  # Return the matching row
+        return result[0] 
     else:
         return None 
   
@@ -91,27 +90,25 @@ def delete_gift(gift):
 @anvil.server.callable
 def get_list_with_gifts(list_id):
     #printing
-    print("All Wishlist rows:", app_tables.wishlist.search())
-  [rint("This is the id: "app_tables.wishlist.get(ID=list_id)
+    wishlist_rows = list(app_tables.wishlist.search())
+    print("All Wishlist rows:", wishlist_rows)
+    print("list id: ", list_id)
+    print("This is the searched id: ", app_tables.wishlist.get(List_Id=list_id))
 
     user = anvil.users.get_user()
 
     if not user:
         return None
 
-    # Convert the list_id to the appropriate data type (e.g., integer)
-    #try:
-    #    list_id = int(list_id)
-    #except ValueError:
-    #    return None
 
-    # Retrieve the list row
-    list_row = app_tables.wishlist.get(ID=list_id)
+    list_row = app_tables.wishlist.get(List_Id=list_id)
+  
+    if list_row:
+      print("List Row Contents:", list_row)
 
     if not list_row:
         return None
 
-    # Retrieve the associated gifts
     gifts = app_tables.gift.search(List_Id=list_row)
 
 

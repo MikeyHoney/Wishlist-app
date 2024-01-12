@@ -40,16 +40,6 @@ class HomeForm(HomeFormTemplate):
     
 
   def list_link(self, **event_args):
-        #user_email = anvil.users.get_user()['email']
-        #list_name = event_args['Name']  # Access Name property directly from the item
-        
-        #list_row = anvil.server.call('get_list_name', name=list_name, user_email=user_email)
-
-       # if list_row is not None:
-       #     my_list_id = list_row['ID']
-       #     routing.set_url_hash('List', list_id=my_list_id)
-       # else:
-       #     alert(f"Wishlist with name '{list_name}' for user '{user_email}' not found.")
       routing.set_url_hash('List')
 
 

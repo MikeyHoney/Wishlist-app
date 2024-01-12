@@ -43,8 +43,9 @@ class Gift(GiftTemplate):
                 self.no_gifts_label.text = "No gifts have been added to the list."
         else:
             alert("No matching list found in the URL parameters.")
-            routing.set_url_hash('')  # Redirect to the home page
+            routing.set_url_hash('')  
 
+  #there are 2 servercalls fix
     def add_gift_click(self, **event_args):
         if not self.Name.text:
             alert("You must enter a name!")

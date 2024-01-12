@@ -13,7 +13,6 @@ from anvil_extras import routing
 class List(ListTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
-        # You need to provide the list_id parameter when calling get_list
         #self.repeating_panel.items = anvil.server.call('get_list', list_id=my_list_id)
 
     def add_list_click(self, **event_args):
@@ -29,16 +28,14 @@ class List(ListTemplate):
     
         new_list = anvil.server.call('add_list', AddList)
         if new_list:
-          routing.set_url_hash('Gift', url_dict={'List_Id': new_list['ID']})
+          routing.set_url_hash('Gift', url_dict={'List_Id': new_list['List_Id']})
           self.form_show()
         else:
           alert("Failed to create the list.")
-        # After creating the list, navigate to the Gift page with the list_id in the URL
-          routing.set_url_hash('Gift', url_dict={'List_Id': new_list['ID']})
+          routing.set_url_hash('Gift', url_dict={'List_Id': new_list['List_Id']})
           self.form_show()
 
     def form_show(self, **event_args):
-        # You need to provide the list_id parameter when calling get_list
         #self.repeating_panel.items = anvil.server.call('get_list', list_id=my_list_id)
         self.repeating_panel.items = anvil.server.call('get_list')
 

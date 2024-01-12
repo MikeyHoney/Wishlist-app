@@ -17,7 +17,6 @@ class ItemTemplate3(ItemTemplate3Template):
 
     def list_link_click(self, **event_args):
 
-      #servercall to get 
         #list_name = self.list_link.text
         #list_name = event_args['sender'].text
 
@@ -25,7 +24,7 @@ class ItemTemplate3(ItemTemplate3Template):
         #list_name = self.item['Name']
         list_name = self.list_link.text
         print(f"This is the name of the list: {list_name}")
-        list_id = self.item['ID']  # Assuming 'ID' is the column name for list_id
+        list_id = self.item['List_Id']  # Assuming 'ID' is the column name for list_id
         print(f"This is the ID of the list: {list_id}")
         self.open_gift_page(list_id)
 
@@ -33,7 +32,6 @@ class ItemTemplate3(ItemTemplate3Template):
     def open_gift_page(self, list_id):
         print(f"open_gift_page method called with list_id: {list_id}")
 
-        # Make a single server call to get both list information and associated gifts
         result = anvil.server.call('get_list_with_gifts', list_id)
 
         if result:
@@ -41,7 +39,7 @@ class ItemTemplate3(ItemTemplate3Template):
             gifts = result['gifts']
 
             if list_info and gifts:
-                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_info['ID']})
+                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_info['List_Id']})
             else:
                 alert(f"No matching list found for ID: {list_id}")
         else:
