@@ -24,7 +24,7 @@ class ItemTemplate3(ItemTemplate3Template):
         #list_name = self.item['Name']
         list_name = self.list_link.text
         print(f"This is the name of the list: {list_name}")
-        list_id = self.item['List_Id']  # Assuming 'ID' is the column name for list_id
+        list_id = self.item['List_Id'] 
         print(f"This is the ID of the list: {list_id}")
         self.open_gift_page(list_id)
 
