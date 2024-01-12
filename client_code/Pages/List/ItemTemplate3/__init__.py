@@ -42,7 +42,7 @@ class ItemTemplate3(ItemTemplate3Template):
             gifts = result['gifts']
 
             if list_info and gifts:
-                routing.set_url_hash(url_pattern='Gift', url_dict={'List_ID': list_info['List_Id']})
+                routing.set_url_hash(url_pattern='Gift', url_dict={'List_Id': list_info['List_Id']})
             else:
                 alert(f"No matching list found for ID: {list_id}")
         else:
