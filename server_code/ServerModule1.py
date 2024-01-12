@@ -67,7 +67,7 @@ def add_list(task_info):
         return
 
     task_info['User_Email'] = user
-    task_info['ID'] = uuid.uuid4().int
+    task_info['List_Id'] = uuid.uuid4().int
 
     new_list = app_tables.wishlist.add_row(**task_info)
 
@@ -99,6 +99,7 @@ def get_list_with_gifts(list_id):
 
     if not user:
         return None
+
 
   
     list_row = app_tables.wishlist.get(List_Id=list_id)
