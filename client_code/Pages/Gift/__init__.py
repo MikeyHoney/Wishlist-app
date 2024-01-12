@@ -37,9 +37,13 @@ class Gift(GiftTemplate):
         if list_id is not None:
             self.List_Id = list_id
             gifts = anvil.server.call('get_gift', list_id=list_id)
+            list_info = anvil.server.call('get_list_with_gifts', list_id)
 
-            if gifts:
+            if gifts and list_info:
                 self.repeating_panel.items = gifts
+                label_list = self.label_list
+                label_list.text = f"List Name: {list_info['list_info']['Name']}"
+                
             else:
                 self.repeating_panel.items = [] 
                 self.add_gift_button.visible = True
