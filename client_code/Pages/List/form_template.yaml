@@ -62,8 +62,7 @@ components:
       name: repeating_panel
       layout_properties: {}
       event_bindings: {show: form_show}
-      data_bindings:
-      - {property: items, code: 'self.item[''Name'']'}
+      data_bindings: []
     event_bindings: {show: form_show}
 - type: FlowPanel
   properties: {}
