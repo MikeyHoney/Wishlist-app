@@ -18,11 +18,15 @@ class ItemTemplate3(ItemTemplate3Template):
     def list_link_click(self, **event_args):
 
       #servercall to get 
-        name = self.list_link.text
-        print(f"This is the name of the list: {name}")
-        self.open_gift_page(name)
+        #list_name = self.list_link.text
+        print("list_link_click method triggered")
+        list_name = event_args['sender'].text
+        print(f"This is the name of the list: {list_name}")
+        self.open_gift_page(list_name)
 
     def open_gift_page(self, name):
+        print(f"open_gift_page method called with name: {name}")
+
         # Assuming there's a server call to get the list based on its name
         list_row = anvil.server.call('get_list_name', name)
 

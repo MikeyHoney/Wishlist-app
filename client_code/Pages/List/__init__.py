@@ -14,7 +14,7 @@ class List(ListTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         # You need to provide the list_id parameter when calling get_list
-        self.repeating_panel.items = anvil.server.call('get_list', list_id=list_id)
+        self.repeating_panel.items = anvil.server.call('get_list', list_id=my_list_id)
 
     def add_list_click(self, **event_args):
         if not self.List_Name.text:
