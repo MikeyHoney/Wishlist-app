@@ -13,21 +13,31 @@ import uuid
 selected_list_id = None
 
 @anvil.server.callable
-def add_gift(task_info):
+def add_gift(task_info, list_id):
     print(f"Received task_info: {task_info}")
     print(f"Received list_id: {list_id}")
     user = anvil.users.get_user()
 
     try:
-        task_info['Name'] = user
-        task_info['List_Id'] = list_id
+        # task_info['Name'] = user
+        # task_info['List_Id'] = list_id
+
+        # Fetch the Wishlist record
+        wishlist_row = app_tables.wishlist.get(List_Id=list_id)
+        if not wishlist_row:
+            raise Exception(f"No matching wishlist found for ID: {list_id}")
+
+        # Use the original List_Id from the wishlist_row
+        task_info['List_Id'] = wishlist_row['List_Id']
 
         new_gift = app_tables.gift.add_row(**task_info)
         
         print("Gift added successfully.")
     except Exception as e:
         print(f"Error adding gift: {e}")
-    return new_gift 
+        return None  # Return None in case of an error
+
+    return new_gift
 
 @anvil.server.callable
 def get_gift(list_id=None):

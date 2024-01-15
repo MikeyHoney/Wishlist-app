@@ -70,11 +70,17 @@ class Gift(GiftTemplate):
        #print(f"URL Hash in add_gift_click: {url_hash}")
         #list_name = routing.get_url_dict().get('List_Id', None)
         #list_id = self.item['List_Id']    
-        list_id = getattr(self.item, 'List_Id', None)
+        #list_id = getattr(self.item, 'List_Id', None)
+        url_dict = routing.get_url_dict()
+
+        url_parameters = routing.get_url_hash()
+        print(f"URL Parameters: {url_parameters}")
+        #list_id = url_parameters
+        list_id = url_dict.get('List_Id')
 
         if list_id is None:
           alert("No List_Id found.")
-        return
+          return
       
         user = anvil.users.get_user('')
 
@@ -84,8 +90,9 @@ class Gift(GiftTemplate):
         AddGift['Name'] = self.Name.text
         AddGift['Description'] = self.Description.text
         AddGift['URL'] = self.URL.text
-        AddGift['User_Email'] = anvil.users.get_user()['email']
+        AddGift['User_Email'] = anvil.users.get_user('email')
 
           #server call
         new_gift = anvil.server.call('add_gift', AddGift, list_id)
+        
         self.form_show()

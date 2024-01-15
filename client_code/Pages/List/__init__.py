@@ -29,11 +29,11 @@ class List(ListTemplate):
         new_list = anvil.server.call('add_list', AddList)
         if new_list:
           routing.set_url_hash(url_pattern='Gift', url_dict={'List_Id': new_list['List_Id']})
-          self.form_show()
         else:
           alert("Failed to create the list.")
           routing.set_url_hash('Gift', url_dict={'List_Id': new_list['List_Id']})
-          self.form_show()
+        
+        self.form_show()
 
     def form_show(self, **event_args):
         #self.repeating_panel.items = anvil.server.call('get_list', list_id=my_list_id)
