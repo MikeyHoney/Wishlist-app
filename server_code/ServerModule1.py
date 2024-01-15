@@ -29,6 +29,7 @@ def add_gift(task_info, list_id):
 
         # Use the original List_Id from the wishlist_row
         task_info['List_Id'] = wishlist_row['List_Id']
+        print(f"Received task_info: {task_info['List_Id']}")
 
         new_gift = app_tables.gift.add_row(**task_info)
         
