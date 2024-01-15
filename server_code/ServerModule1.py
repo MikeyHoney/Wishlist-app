@@ -94,10 +94,6 @@ def get_list():
   return app_tables.wishlist.search(User_Email=anvil.users.get_user(['email']))
 
 @anvil.server.callable
-def delete_gift(gift):
-  gift.delete()
-
-@anvil.server.callable
 def get_list_with_gifts(list_id):
     #printing
     wishlist_rows = list(app_tables.wishlist.search())
@@ -127,3 +123,29 @@ def get_list_with_gifts(list_id):
         'list_info': list_row,
         'gifts': gifts,
     }
+
+
+@anvil.server.callable
+def delete_gift(gift):
+  gift.delete()
+  
+@anvil.server.callable
+def open_edit_form(list_id):
+    # Fetch the list details
+    list_row = app_tables.wishlist.get(List_Id=list_id)
+    if list_row:
+        # Open the edit form with the list details
+        return list_row
+    else:
+        return None
+
+def update_gift_details(gift_id, name, description, url):
+    # Fetch the gift row
+    gift_row = app_tables.gift.get(id=gift_id)
+    if gift_row:
+        # Update gift details
+        gift_row.update_row(Name=name, Description=description, URL=url)
+        return True
+    else:
+        return False
+

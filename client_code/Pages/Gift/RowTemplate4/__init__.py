@@ -15,11 +15,14 @@ class RowTemplate4(RowTemplate4Template):
     
 
   def edit_row(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+        """This method is called when the Edit button is clicked"""
+        # Call a function to open the edit form/modal
+        anvil.server.call('open_edit_form', list_id=self.item['List_Id'])
 
   def delete_row_click(self, **event_args):
     self.parent.raise_event('x-delete', gift=self.item)
+
+
 
 
  

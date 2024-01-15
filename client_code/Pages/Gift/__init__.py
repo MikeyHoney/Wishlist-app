@@ -17,6 +17,8 @@ class Gift(GiftTemplate):
     def __init__(self, **properties):
         self.init_components(**properties)
         self.repeating_panel.set_event_handler('x-delete', self.delete_gift)
+        self.repeating_panel.set_event_handler('x-edit', self.edit_gift)
+
         #self.List_Id = list_id
 
     def delete_gift(self, gift, **event_args):
@@ -30,10 +32,13 @@ class Gift(GiftTemplate):
         list_id = url_dict.get('List_Id')
         self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
 
+    #def edit_gift(self, gift, **event_args):
+     #   anvil.server.call('edit_gift', gift)
+     #   self.repeating_panel.items = anvil.server.call('get_gift', list_name=self.List_Name)
     def edit_gift(self, gift, **event_args):
-        anvil.server.call('edit_gift', gift)
-        self.repeating_panel.items = anvil.server.call('get_gift', list_name=self.List_Name)
-
+        # Call a function to open the edit form/modal
+        anvil.server.call('open_edit_gift_form', gift)
+  
     def form_show(self, **event_args):
         url_dict = routing.get_url_dict()
 
