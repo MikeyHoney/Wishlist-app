@@ -21,7 +21,14 @@ class Gift(GiftTemplate):
 
     def delete_gift(self, gift, **event_args):
         anvil.server.call('delete_gift', gift)
-        self.repeating_panel.items = anvil.server.call('get_gift', list_name=self.List_Name)
+        url_dict = routing.get_url_dict()
+
+        url_parameters = routing.get_url_hash()
+        #print(f"URL Parameters: {url_parameters}")
+        #list_id = url_parameters
+        #list_id = url_parameters.get('List_Id')
+        list_id = url_dict.get('List_Id')
+        self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
 
     def edit_gift(self, gift, **event_args):
         anvil.server.call('edit_gift', gift)
