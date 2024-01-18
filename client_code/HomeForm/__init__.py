@@ -16,6 +16,7 @@ from anvil_extras import routing
 from ..Pages.Home import Home
 from ..Pages.List import List
 from ..Pages.Gift import Gift
+from ..Pages.EditGift import EditGift
 
 
 @routing.main_router

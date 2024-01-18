@@ -8,6 +8,10 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 
+from anvil_extras import routing
+
+@routing.route('EditGift', url_keys=['List_Id'])
+#not sure of routing
 class EditGift(EditGiftTemplate):
   def __init__(self, gift, **properties):
     self.init_components(**properties)
@@ -29,8 +33,7 @@ class EditGift(EditGiftTemplate):
       updated_data['URL'] = self.url_textbox.text
 
     if updated_data:
-            # Update only the changed fields
-      anvil.server.call('update_gift_details', self.gift['Id'], **updated_data)
+      anvil.server.call('update_gift_details', self.gift['Gift_Id'], **updated_data)
 
     self.close()
 

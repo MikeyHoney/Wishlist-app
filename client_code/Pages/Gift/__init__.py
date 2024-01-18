@@ -32,28 +32,24 @@ class Gift(GiftTemplate):
         list_id = url_dict.get('List_Id')
         self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
 
-    #def edit_gift(self, gift, **event_args):
-     #   anvil.server.call('edit_gift', gift)
-     #   self.repeating_panel.items = anvil.server.call('get_gift', list_name=self.List_Name)
+    
     def edit_gift(self, gift, **event_args):
-        # Call a function to open the edit form/modal
-        #anvil.server.call('open_edit_form', gift)
-        open_form('EditGift', gift)
-        #routing.set_url_hash('EditGift')
+
+        #open_form('EditGift', gift)
+        #routing.set_url_hash(url_pattern='EditGift', gift = gift)
+        routing.set_url_hash('EditGift')
 
   
     def form_show(self, **event_args):
-        url_dict = routing.get_url_dict()
+      url_dict = routing.get_url_dict()
 
-        url_parameters = routing.get_url_hash()
-        #print(f"URL Parameters: {url_parameters}")
-        #list_id = url_parameters
-        #list_id = url_parameters.get('List_Id')
-        list_id = url_dict.get('List_Id')
+      url_parameters = routing.get_url_hash()
+        
+      list_id = url_dict.get('List_Id')
 
 
       
-        if list_id is not None:
+      if list_id is not None:
             self.List_Id = list_id
             gifts = anvil.server.call('get_gift', list_id=list_id)
             list_info = anvil.server.call('get_list_with_gifts', list_id)
@@ -67,11 +63,10 @@ class Gift(GiftTemplate):
                 self.repeating_panel.items = [] 
                 self.add_gift_button.visible = True
                 self.no_gifts_label.text = "No gifts have been added to the list."
-        else:
+      else:
             alert("No matching list found in the URL parameters.")
             routing.set_url_hash('')  
 
-  #there are 2 servercalls fix
     def add_gift_click(self, **event_args):
         if not self.Name.text:
             alert("You must enter a name!")
@@ -84,17 +79,11 @@ class Gift(GiftTemplate):
         if not self.URL.text:
             alert("You must enter a URL!")
             return
-
-        #url_hash = routing.get_url_hash()
-       #print(f"URL Hash in add_gift_click: {url_hash}")
-        #list_name = routing.get_url_dict().get('List_Id', None)
-        #list_id = self.item['List_Id']    
-        #list_id = getattr(self.item, 'List_Id', None)
+          
         url_dict = routing.get_url_dict()
 
         url_parameters = routing.get_url_hash()
         print(f"URL Parameters: {url_parameters}")
-        #list_id = url_parameters
         list_id = url_dict.get('List_Id')
 
         if list_id is None:
@@ -103,7 +92,6 @@ class Gift(GiftTemplate):
       
         user = anvil.users.get_user('')
 
-        #anvil.server.call('get_list_with_gifts', list_id)
 
         AddGift = {}
         AddGift['Name'] = self.Name.text
@@ -111,7 +99,6 @@ class Gift(GiftTemplate):
         AddGift['URL'] = self.URL.text
         AddGift['User_Email'] = anvil.users.get_user('email')
 
-          #server call
         new_gift = anvil.server.call('add_gift', AddGift, list_id)
         
         self.form_show()

@@ -17,12 +17,10 @@ def add_gift(task_info, list_id):
     print(f"Received task_info: {task_info}")
     print(f"Received list_id: {list_id}")
     user = anvil.users.get_user()
+    task_info['Gift_Id'] = str(uuid.uuid4())
+
 
     try:
-        # task_info['Name'] = user
-        # task_info['List_Id'] = list_id
-
-        # Fetch the Wishlist record
         wishlist_row = app_tables.wishlist.get(List_Id=list_id)
         if not wishlist_row:
             raise Exception(f"No matching wishlist found for ID: {list_id}")
@@ -131,10 +129,8 @@ def delete_gift(gift):
   
 @anvil.server.callable
 def update_gift_details(gift_id, **updated_data):
-    # Fetch the gift row
-    gift_row = app_tables.gift.get(id=gift_id)
+    gift_row = app_tables.gift.get(gift_id=gift_id)
     if gift_row:
-        # Update only the changed fields
         gift_row.update(**updated_data)
         return True
     else:
