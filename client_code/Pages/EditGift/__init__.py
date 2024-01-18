@@ -9,12 +9,31 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class EditGift(EditGiftTemplate):
-  def __init__(self, **properties):
-    # Set Form properties and Data Bindings.
+  def __init__(self, gift, **properties):
     self.init_components(**properties)
+    self.gift = gift
+    self.name.text = gift['Name']
+    self.description.text = gift['Description']
+    self.url.text = gift['URL']
 
-    # Any code you write here will run before the form opens.
+  def save_edit(self, **event_args):
+    updated_data = {}
 
-  def edit_gift_click(self, **event_args):
-    """This method is called when the button is clicked"""
-    pass
+    if self.name_textbox.text != self.gift['Name']:
+      updated_data['Name'] = self.name_textbox.text
+
+    if self.description_textbox.text != self.gift['Description']:
+      updated_data['Description'] = self.description_textbox.text
+
+    if self.url_textbox.text != self.gift['URL']:
+      updated_data['URL'] = self.url_textbox.text
+
+    if updated_data:
+            # Update only the changed fields
+      anvil.server.call('update_gift_details', self.gift['Id'], **updated_data)
+
+    self.close()
+
+  def cancel_edit(self, **event_args):
+      self.close()
+    

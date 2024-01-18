@@ -99,12 +99,17 @@ components:
         type: TextBox
         layout_properties: {}
         event_bindings: {}
+  - name: button_1
+    properties: {text: Cancel}
+    type: Button
+    layout_properties: {grid_position: 'WEQOLL,DOVYOH'}
+    event_bindings: {click: cancel_edit}
   - name: add_gift_button
     properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Edit Gift, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+      foreground: '', visible: true, text: Confirm Edit, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
     type: Button
     layout_properties: {grid_position: 'WEQOLL,PZSDFM'}
-    event_bindings: {click: edit_gift_click}
+    event_bindings: {click: save_edit}
 is_package: true

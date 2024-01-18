@@ -37,7 +37,10 @@ class Gift(GiftTemplate):
      #   self.repeating_panel.items = anvil.server.call('get_gift', list_name=self.List_Name)
     def edit_gift(self, gift, **event_args):
         # Call a function to open the edit form/modal
-        anvil.server.call('open_edit_gift_form', gift)
+        #anvil.server.call('open_edit_form', gift)
+        open_form('EditGift', gift)
+        #routing.set_url_hash('EditGift')
+
   
     def form_show(self, **event_args):
         url_dict = routing.get_url_dict()
