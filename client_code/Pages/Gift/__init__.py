@@ -34,10 +34,10 @@ class Gift(GiftTemplate):
 
     
     def edit_gift(self, gift, **event_args):
-
+      
         #open_form('EditGift', gift)
         #routing.set_url_hash(url_pattern='EditGift', gift = gift)
-        routing.set_url_hash('EditGift', 'List_Id')
+      routing.set_url_hash('EditGift', List_Id=gift['List_Id'])
 
   
     def form_show(self, **event_args):
