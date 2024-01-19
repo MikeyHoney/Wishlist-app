@@ -11,7 +11,6 @@ from anvil.tables import app_tables
 
 
 from anvil_extras import routing
-
 @routing.route('Gift', url_keys=['List_Id'], title="Gift")
 class Gift(GiftTemplate):
     def __init__(self, **properties):
@@ -34,10 +33,9 @@ class Gift(GiftTemplate):
 
     
     def edit_gift(self, gift, **event_args):
-      
-        #open_form('EditGift', gift)
-        #routing.set_url_hash(url_pattern='EditGift', gift = gift)
-      routing.set_url_hash('EditGift', List_Id=gift['List_Id'])
+      list_id = gift['List_Id']
+      print(f"Edit Gift - List_Id: {list_id}")
+      routing.set_url_hash('EditGift', List_Id=list_id, Gift_Id=gift['Gift_Id'])
 
   
     def form_show(self, **event_args):

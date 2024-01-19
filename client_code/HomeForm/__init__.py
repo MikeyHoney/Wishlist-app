@@ -58,12 +58,16 @@ class HomeForm(HomeFormTemplate):
     if not anvil.users.get_user():
       routing.set_url_hash('Login')
       alert('You must be logged in to add to / create a list')
+    else:
+      print(f"Current URL hash: {routing.get_url_hash()}")
+
 
   def logout_link(self, **event_args):
     anvil.users.logout()
     self.update_links()
     routing.set_url_hash('')
     routing.clear_cache()   
+
 
 
 

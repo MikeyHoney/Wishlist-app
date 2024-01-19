@@ -10,13 +10,13 @@ from anvil.tables import app_tables
 
 
 from anvil_extras import routing
-
-@routing.route('EditGift', url_keys=['List_Id'])
+@routing.route('EditGift', url_keys=['List_Id'], title='EditGift')
 #not sure of routing
 class EditGift(EditGiftTemplate):
   def __init__(self, gift, **properties):
     self.init_components(**properties)
     self.gift = gift
+    print(f"EditGift - URL Dict: {routing.get_url_dict()}")
     self.name.text = gift['Name']
     self.description.text = gift['Description']
     self.url.text = gift['URL']
@@ -34,7 +34,7 @@ class EditGift(EditGiftTemplate):
       updated_data['URL'] = self.url_textbox.text
 
     if updated_data:
-      anvil.server.call('update_gift_details', self.gift['Gift_Id'], **updated_data)
+      anvil.server.call('update_gift_details', self.gift['Gift_Id'], list_id, **updated_data)
 
     self.close()
 
