@@ -37,7 +37,7 @@ class Gift(GiftTemplate):
 
         #open_form('EditGift', gift)
         #routing.set_url_hash(url_pattern='EditGift', gift = gift)
-        routing.set_url_hash('EditGift')
+        routing.set_url_hash('EditGift', 'List_Id')
 
   
     def form_show(self, **event_args):
