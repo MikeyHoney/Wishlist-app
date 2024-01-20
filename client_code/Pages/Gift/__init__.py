@@ -32,11 +32,23 @@ class Gift(GiftTemplate):
         self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
 
     
-    def edit_gift(self, gift, **event_args):
-      list_id = gift['List_Id']
-      print(f"Edit Gift - List_Id: {list_id}")
-      routing.set_url_hash('EditGift', List_Id=list_id, Gift_Id=gift['Gift_Id'])
+    def edit_gift(self, **event_args):
+      url_dict = routing.get_url_dict()
+      list_id = url_dict.get('List_Id')
 
+      if list_id:
+        print(f"Edit Gift - List_Id: {list_id}")
+
+        # Call the server function with the List_Id object
+        edit_gift = anvil.server.call('get_list_with_gifts', list_id)
+
+        if edit_gift:
+            routing.set_url_hash(url_pattern='EditGift', url_dict={'List_Id': list_id, 'gift': edit_gift})
+        else:
+            alert("Failed to edit the gift.")
+            routing.set_url_hash('EditGift')
+      else:
+        alert("List_Id not found in the URL parameters.")
   
     def form_show(self, **event_args):
       url_dict = routing.get_url_dict()

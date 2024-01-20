@@ -10,13 +10,12 @@ from anvil.tables import app_tables
 
 
 from anvil_extras import routing
-@routing.route('EditGift', url_keys=['List_Id'], title='EditGift')
+@routing.route('EditGift', url_keys=['List_Id', 'gift'], title='EditGift')
 #not sure of routing
 class EditGift(EditGiftTemplate):
   def __init__(self, gift, **properties):
     self.init_components(**properties)
-    self.gift = gift
-    print(f"EditGift - URL Dict: {routing.get_url_dict()}")
+    #self.gift = gift
     self.name.text = gift['Name']
     self.description.text = gift['Description']
     self.url.text = gift['URL']
