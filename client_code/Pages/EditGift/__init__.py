@@ -10,14 +10,27 @@ from anvil.tables import app_tables
 
 
 from anvil_extras import routing
-@routing.route('EditGift', url_keys=['List_Id', 'gift'], title='EditGift')
+@routing.route('EditGift', url_keys=['List_Id', 'Gift_Id'], title='EditGift')
 class EditGift(EditGiftTemplate):
-  def __init__(self, gift, **properties):
+  def __init__(self, **properties):
     self.init_components(**properties)
-    #self.gift = gift
-    self.name.text = gift['Name']
-    self.description.text = gift['Description']
-    self.url.text = gift['URL']
+
+    list_id = self.url_dict.get('List_Id')
+    gift_id = self.url_dict.get('Gift_Id')
+
+    if list_id and gift_id:
+      self.gift = anvil.server.call('get_gift_info', list_id, gift_id)
+
+      if self.gift:
+        self.name.text = self.gift['Name']
+        self.description.text = self.gift['Description']
+        self.url.text = self.gift['URL']
+      else:
+          alert("Failed to retrieve gift information.")
+          self.close()
+    else:
+      alert("List_Id or Gift_Id not found in the URL parameters.")
+      self.close()
 
   def save_edit(self, **event_args):
     updated_data = {}

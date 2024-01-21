@@ -15,7 +15,8 @@ class RowTemplate4(RowTemplate4Template):
     
 
   def edit_row(self, **event_args):
-        #anvil.server.call('open_edit_form', list_id=self.item['List_Id'])\
+    #anvil.server.call('open_edit_form', list_id=self.item['List_Id'])\
+    #gift_id = self.item['Gift_Id']
     self.parent.raise_event('x-edit', gift=self.item)
 
 
