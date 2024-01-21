@@ -11,7 +11,6 @@ from anvil.tables import app_tables
 
 from anvil_extras import routing
 @routing.route('EditGift', url_keys=['List_Id', 'gift'], title='EditGift')
-#not sure of routing
 class EditGift(EditGiftTemplate):
   def __init__(self, gift, **properties):
     self.init_components(**properties)

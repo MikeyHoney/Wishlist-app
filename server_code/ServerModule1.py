@@ -122,6 +122,25 @@ def get_list_with_gifts(list_id):
         'gifts': gifts,
     }
 
+@anvil.server.callable
+def get_gift_info(list_id, gift_id):
+    user = anvil.users.get_user()
+
+    if not user:
+        return None
+
+    list_row = app_tables.wishlist.get(List_Id=list_id)
+
+    if not list_row:
+        return None
+
+    gift = app_tables.gift.get(Gift_Id=gift_id)
+
+    return {
+        'list_info': list_row,
+        'gift': gift,
+    }
+
 
 @anvil.server.callable
 def delete_gift(gift):

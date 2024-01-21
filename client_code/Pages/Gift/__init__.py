@@ -39,11 +39,17 @@ class Gift(GiftTemplate):
       if list_id:
         print(f"Edit Gift - List_Id: {list_id}")
 
-        # Call the server function with the List_Id object
-        edit_gift = anvil.server.call('get_list_with_gifts', list_id)
+        # Get the gift_id from the URL parameters
+        #gift_id = url_dict.get('gift')
+        gift_id = self.item['Gift_Id']
+        print(f"Edit Gift - Gift_Id: {gift_id}")
+
+        # Call the server function with both List_Id and Gift_Id
+        edit_gift = anvil.server.call('get_gift_info', list_id, gift_id)
+        print(f"Edit Gift info: {edit_gift}")
 
         if edit_gift:
-            routing.set_url_hash(url_pattern='EditGift', url_dict={'List_Id': list_id, 'gift': edit_gift})
+            routing.set_url_hash(url_pattern='EditGift', url_dict={'List_Id': list_id, 'gift': edit_gift['gift']})
         else:
             alert("Failed to edit the gift.")
             routing.set_url_hash('EditGift')
