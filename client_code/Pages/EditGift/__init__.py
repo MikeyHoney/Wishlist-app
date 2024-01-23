@@ -15,6 +15,10 @@ class EditGift(EditGiftTemplate):
   def __init__(self, **properties):
     self.init_components(**properties)
 
+  def form_show(self, **event_args):
+    url_dict = routing.get_url_dict()
+
+    url_parameters = routing.get_url_hash()
     list_id = self.url_dict.get('List_Id')
     gift_id = self.url_dict.get('Gift_Id')
 
@@ -25,9 +29,12 @@ class EditGift(EditGiftTemplate):
       print(f"{gift}")
 
       if gift:
-        self.name.text = self.gift['Name']
-        self.description.text = self.gift['Description']
-        self.url.text = self.gift['URL']
+        self.name.text = gift['Name']
+        self.description.text = gift['Description']
+        self.url.text = gift['URL']
+        #self.name.text = self.gift['Name']
+        #self.description.text = self.gift['Description']
+        #self.url.text = self.gift['URL']
       else:
           alert("Failed to retrieve gift information.")
           self.close()
@@ -54,4 +61,3 @@ class EditGift(EditGiftTemplate):
 
   def cancel_edit(self, **event_args):
       self.close()
-    
