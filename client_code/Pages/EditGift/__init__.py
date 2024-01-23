@@ -19,9 +19,12 @@ class EditGift(EditGiftTemplate):
     gift_id = self.url_dict.get('Gift_Id')
 
     if list_id and gift_id:
-      self.gift = anvil.server.call('get_gift_info', list_id, gift_id)
+      #print(f"Gift Object: {self.gift}")  # Add this line to inspect the 'gift' object
 
-      if self.gift:
+      gift = anvil.server.call('get_gift_info', list_id, gift_id)
+      print(f"{gift}")
+
+      if gift:
         self.name.text = self.gift['Name']
         self.description.text = self.gift['Description']
         self.url.text = self.gift['URL']
