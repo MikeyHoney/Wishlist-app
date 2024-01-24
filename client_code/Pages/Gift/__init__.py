@@ -120,5 +120,6 @@ class Gift(GiftTemplate):
         self.form_show()
 
     def generate_link(self, **event_args):
-      """This method is called when the button is clicked"""
+    #new page using the list id to acces the gifts
+      #print the page using a form show instead of traveling to the link
       pass
