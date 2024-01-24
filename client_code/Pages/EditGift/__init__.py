@@ -58,27 +58,31 @@ class EditGift(EditGiftTemplate):
     gift = anvil.server.call('get_gift_info', list_id, gift_id)
     updated_data = {}
 
-    if self.Name.text != gift['gift']['Name'] && self.Name.text != '':
+    if self.Name.text != gift['gift']['Name'] and self.Name.text != '':
         updated_data['Name'] = self.Name.text
     #else:
     #   updated_data['Name'] = gift['gift']['Name']
 
-    if self.Description.text != gift['gift']['Description']:
+    if self.Description.text != gift['gift']['Description'] and self.Description.text != '':
         updated_data['Description'] = self.Description.text
     #else:
     #    updated_data['Description'] = gift['gift']['Description']
 
-    if self.URL.text != gift['gift']['URL']:
+    if self.URL.text != gift['gift']['URL'] and self.URL.text != '':
         updated_data['URL'] = self.URL.text
     #else:
 
 
     if updated_data:
         anvil.server.call('update_gift_details', gift_id, **updated_data)
+        alert("Gift updated successfully!")
     #else:
 
 
-    routing.set_url_hash('Gift')
+    routing.set_url_hash('List')
 
   def cancel_edit(self, **event_args):
-      self.close()
+
+      alert("The gift edit has been canceled.")
+      routing.set_url_hash('List')
+    
