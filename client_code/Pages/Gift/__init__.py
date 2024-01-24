@@ -66,6 +66,7 @@ class Gift(GiftTemplate):
       
       if list_id is not None:
             self.List_Id = list_id
+            #there are two server calls here fix this
             gifts = anvil.server.call('get_gift', list_id=list_id)
             list_info = anvil.server.call('get_list_with_gifts', list_id)
 

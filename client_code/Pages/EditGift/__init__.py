@@ -29,12 +29,12 @@ class EditGift(EditGiftTemplate):
       print(f"{gift}")
 
       if gift:
-        label_1 = self.label_1 
+        #label_1 = self.label_1 
         #gift['Name']
-        label_1.text = f"gift['Name']"
-
-        self.label_2.text = gift['Description']
-        self.label_3.text = gift['URL']
+        #label_1.text = f"gift['Name']"
+        self.label_1.text = f"{gift['gift']['Name']}"
+        self.label_2.text = f"{gift['gift']['Description']}"
+        self.label_3.text = f"{gift['gift']['URL']}"
 
         #ex
         #label_list = self.label_list
