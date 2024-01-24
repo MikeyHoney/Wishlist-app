@@ -19,7 +19,7 @@ components:
   - name: flow_panel_1_copy_3
     properties: {}
     type: FlowPanel
-    layout_properties: {grid_position: 'QRLLZE,OYFTDR'}
+    layout_properties: {grid_position: 'KVFYTF,FZEOFJ'}
     components:
     - name: label_1_copy_3
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -28,9 +28,6 @@ components:
         underline: false, icon: ''}
       type: Label
       layout_properties: {}
-    - name: label_1
-      properties: {}
-      type: Label
     - name: Name
       properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: type new name here...,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -58,9 +55,6 @@ components:
           underline: false, icon: ''}
         type: Label
         layout_properties: {}
-      - name: label_2
-        properties: {}
-        type: Label
       - name: Description
         properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: type new description here...,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -88,9 +82,6 @@ components:
           underline: false, icon: ''}
         type: Label
         layout_properties: {}
-      - name: label_3
-        properties: {}
-        type: Label
       - name: URL
         properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: type new URL here...,
           border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -112,4 +103,33 @@ components:
     type: Button
     layout_properties: {grid_position: 'WEQOLL,PZSDFM'}
     event_bindings: {click: save_edit}
+- name: column_panel_1
+  properties: {}
+  type: ColumnPanel
+  layout_properties: {slot: default}
+  components:
+  - name: label_5
+    properties: {text: 'Name:'}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,QBRILX HDXIMU,BWEUQF'}
+  - name: label_1
+    properties: {}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,QBRILX PZSXRG,DOVNVQ'}
+  - name: label_6
+    properties: {text: 'Description:'}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,VVEYMQ RJOLRP,ZATYQM'}
+  - name: label_2
+    properties: {}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,VVEYMQ KAJMYU,QKHFZT'}
+  - name: label_7
+    properties: {text: 'URL:'}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,XKCBVG DSDPYJ,VOZXJU'}
+  - name: label_3
+    properties: {}
+    type: Label
+    layout_properties: {grid_position: 'LJQZVI,XKCBVG LTFVTH,LYLNML'}
 is_package: true
