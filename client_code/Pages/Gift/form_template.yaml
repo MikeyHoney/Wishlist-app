@@ -148,3 +148,4 @@ components:
     properties: {text: Generate View Only Link}
     type: Button
     layout_properties: {grid_position: 'BADDBE,RVPGRF', row_background: '', full_width_row: false}
+    event_bindings: {click: generate_link}

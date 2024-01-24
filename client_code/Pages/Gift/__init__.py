@@ -118,3 +118,7 @@ class Gift(GiftTemplate):
         new_gift = anvil.server.call('add_gift', AddGift, list_id)
         
         self.form_show()
+
+    def generate_link(self, **event_args):
+      """This method is called when the button is clicked"""
+      pass
