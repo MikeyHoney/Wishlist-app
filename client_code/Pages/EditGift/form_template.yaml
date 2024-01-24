@@ -132,4 +132,5 @@ components:
     properties: {}
     type: Label
     layout_properties: {grid_position: 'LJQZVI,XKCBVG LTFVTH,LYLNML'}
+  event_bindings: {show: form_show}
 is_package: true
