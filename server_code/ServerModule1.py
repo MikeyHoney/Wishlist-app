@@ -148,7 +148,7 @@ def delete_gift(gift):
   
 @anvil.server.callable
 def update_gift_details(gift_id, **updated_data):
-    gift_row = app_tables.gift.get(gift_id=gift_id)
+    gift_row = app_tables.gift.get(Gift_Id=gift_id)
     if gift_row:
         gift_row.update(**updated_data)
         return True

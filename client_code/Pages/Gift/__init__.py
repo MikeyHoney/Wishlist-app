@@ -51,7 +51,7 @@ class Gift(GiftTemplate):
             routing.set_url_hash(url_pattern='EditGift', url_dict={'List_Id': list_id, 'Gift_Id': gift_id})
         else:
             alert("Failed to edit the gift.")
-            routing.set_url_hash('EditGift')
+            routing.set_url_hash('Gift')
       else:
         alert("List_Id not found in the URL parameters.")
   

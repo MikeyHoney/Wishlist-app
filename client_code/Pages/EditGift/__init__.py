@@ -45,27 +45,40 @@ class EditGift(EditGiftTemplate):
         #self.url.text = self.gift['URL']
       else:
           alert("Failed to retrieve gift information.")
-          self.close()
     else:
       alert("List_Id or Gift_Id not found in the URL parameters.")
-      self.close()
 
   def save_edit(self, **event_args):
+    url_dict = routing.get_url_dict()
+
+    url_parameters = routing.get_url_hash()
+    list_id = self.url_dict.get('List_Id')
+    gift_id = self.url_dict.get('Gift_Id')
+
+    gift = anvil.server.call('get_gift_info', list_id, gift_id)
     updated_data = {}
 
-    if self.Name.text != gift['Name']:
-      updated_data['Name'] = self.name_textbox.text
+    if self.Name.text != gift['gift']['Name'] && self.Name.text != '':
+        updated_data['Name'] = self.Name.text
+    #else:
+    #   updated_data['Name'] = gift['gift']['Name']
 
-    if self.Description.text != self.gift['Description']:
-      updated_data['Description'] = self.description_textbox.text
+    if self.Description.text != gift['gift']['Description']:
+        updated_data['Description'] = self.Description.text
+    #else:
+    #    updated_data['Description'] = gift['gift']['Description']
 
-    if self.URL.text != self.gift['URL']:
-      updated_data['URL'] = self.url_textbox.text
+    if self.URL.text != gift['gift']['URL']:
+        updated_data['URL'] = self.URL.text
+    #else:
+
 
     if updated_data:
-      anvil.server.call('update_gift_details', self.gift['Gift_Id'], list_id, **updated_data)
+        anvil.server.call('update_gift_details', gift_id, **updated_data)
+    #else:
 
-    self.close()
+
+    routing.set_url_hash('Gift')
 
   def cancel_edit(self, **event_args):
       self.close()

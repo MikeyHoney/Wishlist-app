@@ -102,7 +102,7 @@ components:
       spacing_above: small, icon_align: left, spacing_below: small, italic: false,
       background: '', bold: false, underline: false, icon: ''}
     type: Button
-    layout_properties: {grid_position: 'WEQOLL,PZSDFM'}
+    layout_properties: {grid_position: 'WEQOLL,PZSDFM', full_width_row: false, row_background: ''}
     event_bindings: {click: save_edit}
   - name: column_panel_1
     properties: {}
