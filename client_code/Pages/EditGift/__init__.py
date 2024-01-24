@@ -29,9 +29,17 @@ class EditGift(EditGiftTemplate):
       print(f"{gift}")
 
       if gift:
-        self.name.text = gift['Name']
-        self.description.text = gift['Description']
-        self.url.text = gift['URL']
+        label_1 = self.label_1 
+        #gift['Name']
+        label_1.text = f"gift['Name']"
+
+        self.label_2.text = gift['Description']
+        self.label_3.text = gift['URL']
+
+        #ex
+        #label_list = self.label_list
+        #label_list.text = f"List Name: {list_info['list_info']['Name']}"
+      
         #self.name.text = self.gift['Name']
         #self.description.text = self.gift['Description']
         #self.url.text = self.gift['URL']
@@ -45,13 +53,13 @@ class EditGift(EditGiftTemplate):
   def save_edit(self, **event_args):
     updated_data = {}
 
-    if self.name_textbox.text != self.gift['Name']:
+    if self.Name.text != gift['Name']:
       updated_data['Name'] = self.name_textbox.text
 
-    if self.description_textbox.text != self.gift['Description']:
+    if self.Description.text != self.gift['Description']:
       updated_data['Description'] = self.description_textbox.text
 
-    if self.url_textbox.text != self.gift['URL']:
+    if self.URL.text != self.gift['URL']:
       updated_data['URL'] = self.url_textbox.text
 
     if updated_data:
