@@ -122,4 +122,12 @@ class Gift(GiftTemplate):
     def generate_link(self, **event_args):
     #new page using the list id to acces the gifts
       #print the page using a form show instead of traveling to the link
-      pass
+         
+      url_dict = routing.get_url_dict()
+      list_id = url_dict.get('List_Id')
+
+      if list_id:
+        print(f"List_Id: {list_id}")
+        routing.set_url_hash(url_pattern='ViewList', url_dict={'List_Id': list_id})
+      else:
+        alert("List_Id not found in the URL parameters.")

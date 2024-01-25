@@ -51,4 +51,5 @@ components:
       - {property: items, code: 'self.item[''Name'']'}
       - {property: items, code: 'self.item[''Description'']'}
       - {property: items, code: 'self.item[''URL'']'}
+    event_bindings: {show: form_show}
 is_package: true
