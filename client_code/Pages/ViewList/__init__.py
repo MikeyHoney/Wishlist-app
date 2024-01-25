@@ -24,8 +24,6 @@ class ViewList(ViewListTemplate):
       url_parameters = routing.get_url_hash()
         
       list_id = url_dict.get('List_Id')
-
-
       
       if list_id is not None:
             self.List_Id = list_id

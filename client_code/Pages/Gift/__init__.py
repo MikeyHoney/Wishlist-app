@@ -8,6 +8,8 @@ from anvil.google.drive import app_files
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from anvil.js.window import open as js_open
+
 
 
 from anvil_extras import routing
@@ -128,6 +130,6 @@ class Gift(GiftTemplate):
 
       if list_id:
         print(f"List_Id: {list_id}")
-        routing.set_url_hash(url_pattern='ViewList', url_dict={'List_Id': list_id})
+        js_open(f'#ViewList?List_Id={list_id}', '_blank')
       else:
         alert("List_Id not found in the URL parameters.")

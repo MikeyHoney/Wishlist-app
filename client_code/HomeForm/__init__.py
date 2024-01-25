@@ -17,6 +17,7 @@ from ..Pages.Home import Home
 from ..Pages.List import List
 from ..Pages.Gift import Gift
 from ..Pages.EditGift import EditGift
+from ..Pages.ViewList import ViewList
 
 
 @routing.main_router
