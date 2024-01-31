@@ -144,6 +144,7 @@ components:
       - {property: items, code: 'self.item[''Name'']'}
       - {property: items, code: 'self.item[''Description'']'}
       - {property: items, code: 'self.item[''URL'']'}
+    data_bindings: []
   - name: button_1
     properties: {text: Generate View Only Link}
     type: Button
