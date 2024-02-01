@@ -142,9 +142,7 @@ components:
       layout_properties: {}
       event_bindings: {show: form_show}
       data_bindings:
-      - {property: items, code: 'self.item[''Name'']'}
-      - {property: items, code: 'self.item[''Description'']'}
-      - {property: items, code: 'self.item[''URL'']'}
+      - {property: items, code: 'self.item['''']', writeback: false}
     data_bindings: []
   - name: button_1
     properties: {text: Generate View Only Link}
