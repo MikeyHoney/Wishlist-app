@@ -3,6 +3,7 @@ container:
   type: HtmlTemplate
   properties: {tooltip: '', background: '', foreground: '', border: '', visible: true,
     role: null, html: ''}
+  data_bindings: []
 components:
 - type: ColumnPanel
   properties: {col_widths: '{}'}
