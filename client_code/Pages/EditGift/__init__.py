@@ -54,6 +54,7 @@ class EditGift(EditGiftTemplate):
     list_id = self.url_dict.get('List_Id')
     gift_id = self.url_dict.get('Gift_Id')
 
+    ##############
     gift = anvil.server.call('get_gift_info', list_id, gift_id)
     updated_data = {}
 
