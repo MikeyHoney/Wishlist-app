@@ -1,5 +1,15 @@
 container:
   type: DataRowPanel
   data_bindings: []
-components: []
+components:
+- name: button_1
+  properties: {text: button_1}
+  type: Button
+  layout_properties: {column: NRWJSN}
+  event_bindings: {click: edit_row}
+- name: button_2
+  properties: {text: button_2}
+  type: Button
+  layout_properties: {column: LOXRCT}
+  event_bindings: {click: delete_row_click}
 is_package: true
