@@ -3,13 +3,13 @@ container:
   data_bindings: []
 components:
 - name: button_1
-  properties: {text: '', icon: 'fa:cog'}
+  properties: {text: '', icon: 'fa:cog', background: 'theme:Secondary Container'}
   type: Button
   layout_properties: {column: NRWJSN}
   event_bindings: {click: edit_row}
   data_bindings: []
 - name: button_2
-  properties: {text: '', icon: 'fa:trash'}
+  properties: {text: '', icon: 'fa:trash', background: 'theme:On Secondary Container'}
   type: Button
   layout_properties: {column: LOXRCT}
   event_bindings: {click: delete_row_click}
