@@ -24,10 +24,6 @@ components:
       - {id: ZAAVRF, title: Description, data_key: Description, $$hashKey: 'object:122297'}
       - {id: NNWLRP, title: URL, data_key: URL, $$hashKey: 'object:122298', width: 175,
         expand: false}
-      - {id: NRWJSN, title: edit, data_key: column_1, $$hashKey: 'object:322632',
-        width: 90, expand: false}
-      - {id: LOXRCT, title: delete, data_key: column_2, $$hashKey: 'object:322634',
-        width: 107, expand: false}
       auto_header: true
       tooltip: ''
       border: ''
