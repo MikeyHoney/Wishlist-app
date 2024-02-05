@@ -15,16 +15,8 @@ class EditGift(EditGiftTemplate):
     self.init_components(**properties)
 
   def form_show(self, **event_args):
-    url_dict = routing.get_url_dict()
 
-    url_parameters = routing.get_url_hash()
-    list_id = self.url_dict.get('List_Id')
-    gift_id = self.url_dict.get('Gift_Id')
-
-    if list_id and gift_id:
-      #print(f"Gift Object: {self.gift}")  # Add this line to inspect the 'gift' object
-
-      gift = anvil.server.call('get_gift_info', list_id, gift_id)
+      gift = self.fetch_gift_info()
       print(f"{gift}")
 
       if gift:
@@ -44,18 +36,13 @@ class EditGift(EditGiftTemplate):
         #self.url.text = self.gift['URL']
       else:
           alert("Failed to retrieve gift information.")
-    else:
-      alert("List_Id or Gift_Id not found in the URL parameters.")
 
   def save_edit(self, **event_args):
     url_dict = routing.get_url_dict()
-
     url_parameters = routing.get_url_hash()
-    list_id = self.url_dict.get('List_Id')
     gift_id = self.url_dict.get('Gift_Id')
-
-    ##############
-    gift = anvil.server.call('get_gift_info', list_id, gift_id)
+    
+    gift = self.fetch_gift_info()
     updated_data = {}
 
     if self.Name.text != gift['gift']['Name'] and self.Name.text != '':
@@ -85,4 +72,15 @@ class EditGift(EditGiftTemplate):
 
       alert("The gift edit has been canceled.")
       routing.set_url_hash('List')
+
+  def fetch_gift_info(self):
+    url_dict = routing.get_url_dict()
+    url_parameters = routing.get_url_hash()
+    list_id = self.url_dict.get('List_Id')
+    gift_id = self.url_dict.get('Gift_Id')
+
+    ##############
+    gift = anvil.server.call('get_gift_info', list_id, gift_id)
+
+    return gift
     

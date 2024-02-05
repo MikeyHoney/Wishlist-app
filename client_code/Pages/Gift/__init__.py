@@ -30,8 +30,10 @@ class Gift(GiftTemplate):
         #print(f"URL Parameters: {url_parameters}")
         #list_id = url_parameters
         #list_id = url_parameters.get('List_Id')
-        list_id = url_dict.get('List_Id')
-        self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
+
+        self.form_show()
+        #list_id = url_dict.get('List_Id')
+        #self.repeating_panel.items = anvil.server.call('get_gift', list_id=list_id)
 
     
     def edit_gift(self, gift, **event_args):
@@ -58,11 +60,17 @@ class Gift(GiftTemplate):
         alert("List_Id not found in the URL parameters.")
   
     def form_show(self, **event_args):
+
+      
+      #label_list = self.label_list
+      #label_list.text = f"List Name: {list_info['list_info']['Name']}"
+
       url_dict = routing.get_url_dict()
 
       url_parameters = routing.get_url_hash()
         
       list_id = url_dict.get('List_Id')
+      list_info = self.fetch_label_info(list_id)
 
 
       
@@ -70,12 +78,12 @@ class Gift(GiftTemplate):
             self.List_Id = list_id
             #there are two server calls here fix this
             gifts = anvil.server.call('get_gift', list_id=list_id)
-            list_info = anvil.server.call('get_list_with_gifts', list_id)
+            #list_info = anvil.server.call('get_list_with_gifts', list_id)
 
-            if gifts and list_info:
+            if gifts:
                 self.repeating_panel.items = gifts
-                label_list = self.label_list
-                label_list.text = f"List Name: {list_info['list_info']['Name']}"
+                #label_list = self.label_list
+                #label_list.text = f"List Name: {list_info['list_info']['Name']}"
                 
             else:
                 self.repeating_panel.items = [] 
@@ -84,6 +92,12 @@ class Gift(GiftTemplate):
       else:
             alert("No matching list found in the URL parameters.")
             routing.set_url_hash('')  
+
+    def fetch_label_info(self, list_id):
+      list_info = anvil.server.call('get_list_with_gifts', list_id)
+      label_list = self.label_list
+      label_list.text = f"List Name: {list_info['list_info']['Name']}"
+      pass
 
     def add_gift_click(self, **event_args):
         if not self.Name.text:
