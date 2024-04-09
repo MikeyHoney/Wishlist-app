@@ -154,3 +154,4 @@ def update_gift_details(gift_id, **updated_data):
         return True
     else:
         return False
+
